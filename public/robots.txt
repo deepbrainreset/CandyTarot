@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://candytarot.com/sitemap.xml
