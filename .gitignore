@@ -3,3 +3,4 @@ dist/
 .next/
 .wrangler/
 generated_images/
+.sites-runtime/
