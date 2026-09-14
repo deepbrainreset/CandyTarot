@@ -6,6 +6,9 @@
     "nodejs_compat"
   ],
   "main": "./worker/index.ts",
+  "build": {
+    "command": "pnpm run build"
+  },
   "assets": {
     "directory": "dist/client",
     "not_found_handling": "none",
