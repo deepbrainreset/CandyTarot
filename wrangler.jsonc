@@ -6,6 +6,9 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "build": {
+    "command": "pnpm run build"
+  },
   "assets": {
     "directory": "dist/client",
     "not_found_handling": "none",
