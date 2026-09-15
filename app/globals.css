@@ -423,9 +423,9 @@ img { max-width: 100%; }
   font-size: 15px;
   line-height: 1.7;
 }
-.market-picker {
+.market-location {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
   margin: -27px 0 30px;
@@ -433,44 +433,35 @@ img { max-width: 100%; }
   border: 1px solid var(--line);
   background: rgba(5, 6, 9, .58);
 }
-.market-picker-copy {
+.market-location-copy {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
 }
-.market-picker-copy span {
+.market-location-copy > span {
   color: var(--paper);
   font: 10px var(--mono);
   letter-spacing: .12em;
   text-transform: uppercase;
 }
-.market-picker-copy small {
+.market-location-copy > strong {
+  color: var(--paper);
+  font: 500 21px var(--serif);
+  letter-spacing: -.03em;
+}
+.market-location-copy small {
   color: #8f8e97;
   font: 11px / 1.4 var(--mono);
 }
-.market-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 6px;
+.market-location-copy .market-source {
+  color: var(--red-bright);
+  font-size: 10px;
 }
-.market-tab {
-  appearance: none;
-  border: 1px solid rgba(237, 234, 227, .2);
-  padding: 10px 12px;
-  cursor: pointer;
-  color: #9998a0;
-  background: transparent;
+.market-location-lock {
+  color: #c4c1ba;
   font: 10px var(--mono);
-  letter-spacing: .06em;
+  letter-spacing: .1em;
   text-transform: uppercase;
-  transition: color .2s, background .2s, border-color .2s;
-}
-.market-tab:hover,
-.market-tab.active {
-  color: var(--black);
-  border-color: var(--paper);
-  background: var(--paper);
 }
 .service-grid {
   position: relative;
@@ -776,15 +767,10 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .portrait-frame { inset: 0 18px; }
   .floating-card-top { top: 28px; right: -2px; transform: scale(.8) rotate(7deg); transform-origin: top right; }
   .floating-card-bottom { top: 175px; left: -15px; transform: scale(.8) rotate(-10deg); transform-origin: top left; }
-  .market-picker {
-    align-items: stretch;
+  .market-location {
+    align-items: flex-start;
     flex-direction: column;
     margin: -18px 0 28px;
-  }
-  .market-tabs { justify-content: flex-start; }
-  .market-tab {
-    flex: 1 1 calc(50% - 6px);
-    text-align: center;
   }
   .service-grid { grid-template-columns: 1fr; }
   .service-card { min-height: 480px; }
