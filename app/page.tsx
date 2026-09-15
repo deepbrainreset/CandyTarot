@@ -74,8 +74,8 @@ const services = [
     includes: "tarot + carta · audio · 90 min",
     price: "$65.000",
     featured: true,
-    image: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Jean_Dodal_Tarot_trump_21.jpg",
-    alt: "El Mundo, Le Monde, del Tarot de Marsella de Jean Dodal",
+    image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok_anwnl_10573570-60fb-47ce-969c-ff8e6a233cfd__rhvw01.jpg",
+    alt: "El Mundo del Tarot de Marsella",
   },
   {
     number: "X",
