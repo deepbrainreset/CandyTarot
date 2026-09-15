@@ -113,6 +113,23 @@ function marketFromCountry(country: string): MarketKey {
   return "latam";
 }
 
+function readSavedMarket(): MarketKey | null {
+  try {
+    const storedMarket = window.localStorage.getItem("candy-tarot-market");
+    return isMarketKey(storedMarket) ? storedMarket : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveMarket(market: MarketKey) {
+  try {
+    window.localStorage.setItem("candy-tarot-market", market);
+  } catch {
+    // La selección continúa activa durante esta sesión.
+  }
+}
+
 
 const services: Service[] = [
   {
@@ -284,9 +301,9 @@ export default function Home() {
   const activeMarket = markets.find((item) => item.key === market) ?? markets[0]!;
 
   useEffect(() => {
-    const storedMarket = window.localStorage.getItem("candy-tarot-market");
+    const storedMarket = readSavedMarket();
 
-    if (isMarketKey(storedMarket)) {
+    if (storedMarket) {
       setMarket(storedMarket);
       setRegionSource("manual");
       return;
@@ -317,7 +334,7 @@ export default function Home() {
   const selectMarket = (nextMarket: MarketKey) => {
     setMarket(nextMarket);
     setRegionSource("manual");
-    window.localStorage.setItem("candy-tarot-market", nextMarket);
+    saveMarket(nextMarket);
   };
 
   return (
