@@ -17,8 +17,8 @@ const services = [
     detail: "Una lectura breve y directa para mirar una situación puntual, ordenar lo que sientes y salir del bucle mental.",
     includes: "1 pregunta · audio privado · 20 min",
     price: "$15.000",
-    image: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Jean_Dodal_Tarot_trump_Fool.jpg",
-    alt: "El Loco, Le Mat, del Tarot de Marsella de Jean Dodal",
+    image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok__a6ac07e9-09c3-4dec-9e9a-0123c702702b__t67onu.jpg",
+    alt: "El Loco del Tarot de Marsella",
   },
   {
     number: "II",
@@ -29,8 +29,19 @@ const services = [
     includes: "2 preguntas · audio privado · 35 min",
     price: "$26.000",
     featured: true,
-    image: "https://upload.wikimedia.org/wikipedia/commons/9/97/Jean_Dodal_Tarot_cups_02.jpg",
-    alt: "Dos de Copas del Tarot de Marsella de Jean Dodal",
+    image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok__1d0e0d0d-3d74-4ca3-b87d-a5ca5dbdc33c__ufdnce.jpg",
+    alt: "Tres de Espadas del Tarot de Marsella",
+  },
+  {
+    number: "XXI",
+    card: "El Mundo",
+    title: "Tres preguntas",
+    eyebrow: "Para mirar tu situación desde más de un ángulo",
+    detail: "Tres preguntas conectadas para ordenar lo que estás viviendo, distinguir prioridades y llevarte una lectura con contexto, dirección y claridad.",
+    includes: "3 preguntas · audio privado · 50 min",
+    price: "$34.000",
+    image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok_anwnl_10573570-60fb-47ce-969c-ff8e6a233cfd__rhvw01.jpg",
+    alt: "El Mundo del Tarot de Marsella",
   },
   {
     number: "XVII",
@@ -201,7 +212,7 @@ export default function Home() {
           <div className="portrait-label"><span>Emilia Marsicano</span><small>lecturas con presencia</small></div>
           <div className="floating-card floating-card-top">
             <span>carta guía</span>
-            <img src={services[2].image} alt="" />
+            <img src={services[3].image} alt="" />
             <em>La Estrella · XVII</em>
           </div>
           <div className="floating-card floating-card-bottom"><span>tu mapa es único</span><b>☾</b></div>
@@ -242,7 +253,7 @@ export default function Home() {
           ))}
         </div>
 
-        <p className="tarot-credit">Cartas históricas del Tarot de Marsella de Jean Dodal, Lyon, 1701–1715 · imágenes consultadas en <a href={tarotSourceUrl} target="_blank" rel="noreferrer">Wikimedia Commons ↗</a></p>
+        <p className="tarot-credit">Cartas guía seleccionadas para Candy Tarot · referencias históricas del Tarot de Marsella en <a href={tarotSourceUrl} target="_blank" rel="noreferrer">Wikimedia Commons ↗</a></p>
         <p className="price-note">Argentina: valores de referencia en pesos argentinos · Latam, EE. UU. y España: cotización en USD o EUR al reservar · lecturas online</p>
       </section>
 
