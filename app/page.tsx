@@ -51,8 +51,8 @@ const services = [
     detail: "Tu carta como mapa de tendencias, recursos y desafíos. Una lectura profunda, explicada en lenguaje claro y llevada a tu vida real.",
     includes: "carta natal · PDF · audio · 75 min",
     price: "$45.000",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/30/Jean_Dodal_Tarot_trump_17.jpg",
-    alt: "La Estrella, Le Toille, del Tarot de Marsella de Jean Dodal",
+    image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789463058/AhaTok_Mat%C3%ADas_P%C3%B3lvora_55753bbd-892d-4c1d-be7f-16416d6ec62b__qp9jnh.jpg",
+    alt: "La Estrella del Tarot de Marsella",
   },
   {
     number: "VI",
