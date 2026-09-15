@@ -683,7 +683,7 @@ export default function Home() {
                     style={{ top: sign.top, left: sign.left }}
                     onClick={() => selectZodiac(sign.key)}
                     aria-pressed={selectedZodiac === sign.key}
-                    aria-label={"Ver mensaje diario para " + sign.name}
+                    aria-label={"Ver ficha aleatoria para " + sign.name}
                   >
                     <span className="zodiac-glyph">{sign.glyph}</span>
                     <span className="zodiac-sign-name">{sign.name}</span>
