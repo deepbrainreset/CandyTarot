@@ -676,10 +676,6 @@ export default function Home() {
                   <span className="zodiac-planet planet-two" />
                   <span className="zodiac-planet planet-three" />
                 </div>
-                <div className="zodiac-core" aria-hidden="true">
-                  <strong>12</strong>
-                  <small>signos<br />en órbita</small>
-                </div>
                 <div className="zodiac-signs" role="list" aria-label="Selecciona tu signo">
                   {zodiacSigns.map((sign) => (
                     <button
@@ -697,6 +693,10 @@ export default function Home() {
                     </button>
                   ))}
                 </div>
+              </div>
+              <div className="zodiac-core" aria-hidden="true">
+                <strong>12</strong>
+                <small>signos<br />en órbita</small>
               </div>
               <span className="zodiac-scanline" aria-hidden="true" />
               <div className="zodiac-game-status" aria-hidden="true">
