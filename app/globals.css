@@ -432,6 +432,11 @@ img { max-width: 100%; }
 }
 
 
+@keyframes zodiacSignTurn {
+  0%, 100% { transform: translate(-50%, -50%) rotateY(-7deg) rotateZ(-1deg); }
+  50% { transform: translate(-50%, -50%) rotateY(8deg) rotateZ(2deg); }
+}
+
 @keyframes shootingStar {
   0%, 72%, 100% {
     opacity: 0;
@@ -834,8 +839,15 @@ img { max-width: 100%; }
   font: inherit;
   text-align: center;
   transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  animation: zodiacSignTurn 9s ease-in-out infinite;
   transition: color .25s, border-color .25s, background .25s, box-shadow .25s, transform .25s;
 }
+
+.zodiac-sign:nth-child(3n) { animation-delay: -2.2s; }
+.zodiac-sign:nth-child(4n) { animation-delay: -4.4s; }
+
 .zodiac-sign::before {
   position: absolute;
   inset: -5px;
@@ -852,7 +864,8 @@ img { max-width: 100%; }
   background: rgba(41, 35, 47, .94);
   box-shadow: 0 0 0 5px rgba(245, 221, 180, .06), 0 0 23px rgba(245, 221, 180, .38);
   outline: none;
-  transform: translate(-50%, -50%) translateZ(24px) scale(1.08);
+  animation: none;
+  transform: translate(-50%, -50%) translateZ(24px) rotateY(0deg) scale(1.08);
 }
 .zodiac-sign.is-active::before,
 .zodiac-sign:focus-visible::before { border-color: rgba(224, 120, 120, .62); box-shadow: 0 0 18px rgba(224, 120, 120, .22); }
@@ -1108,7 +1121,8 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .brand img,
   .marquee-track,
   .zodiac-system,
-  .zodiac-core {
+  .zodiac-core,
+  .zodiac-sign {
     animation: none !important;
   }
 }
