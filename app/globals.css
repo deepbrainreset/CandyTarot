@@ -1319,41 +1319,115 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .hero-zodiac {
     width: 100%;
     max-width: 100%;
+    min-width: 0;
   }
   .hero-zodiac .zodiac-cloud {
     width: 100%;
     max-width: 100%;
+    min-width: 0;
   }
   .zodiac-cloud {
-    min-height: 545px;
+    min-width: 0;
+    min-height: 0;
+    width: 100%;
+    height: auto;
     border-radius: 22px;
-    aspect-ratio: 1 / 1.04;
+    aspect-ratio: 1 / 1.16;
+    overflow: hidden;
   }
-  .zodiac-game-hud { top: 15px; right: 16px; left: 16px; }
+  .zodiac-game-hud {
+    top: 13px;
+    right: 13px;
+    left: 13px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
   .zodiac-game-hud small { font-size: 8px; }
   .zodiac-game-scene {
-    inset: 11% 2% 8%;
-    transform: rotateX(51deg) rotateY(-5deg) rotateZ(-8deg) scale(.86);
+    inset: 13% 3% 8%;
+    transform: rotateX(51deg) rotateY(-5deg) rotateZ(-8deg) scale(.76);
   }
   .zodiac-signs {
-    inset: 14% 7% 11%;
-    transform: none;
+    inset: 14% 9% 11%;
+    transform: none !important;
   }
   .zodiac-sign {
-    width: 62px;
+    width: 68px;
     min-height: 50px;
     padding: 4px 2px;
   }
-  .zodiac-glyph { font-size: 23px; }
+  .zodiac-glyph { font-size: 22px; }
+  .zodiac-sign-name {
+    width: 74px;
+    max-width: 74px;
+    font-size: 7px;
+    letter-spacing: .02em;
+    line-height: 1.1;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
   .zodiac-core {
-    width: 124px;
-    height: 124px;
+    width: 116px;
+    height: 116px;
     transform: translate(-50%, -50%);
   }
-  .zodiac-core strong { font-size: 42px; }
+  .zodiac-core strong { font-size: 38px; }
   .zodiac-map-grid { background-size: 32px 20px; }
-  .zodiac-game-status { right: 16px; bottom: 14px; left: 16px; }
+  .zodiac-game-status {
+    right: 13px;
+    bottom: 13px;
+    left: 13px;
+    gap: 8px;
+  }
   .zodiac-legend-note { display: none; }
+  .zodiac-insight {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 18px 16px 18px;
+    overflow: hidden;
+  }
+  .zodiac-insight-meta {
+    width: 100%;
+    min-width: 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 9px;
+  }
+  .zodiac-insight-meta span,
+  .zodiac-insight-meta small {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .zodiac-insight h3 {
+    max-width: 100%;
+    font-size: clamp(24px, 7.2vw, 27px);
+    overflow-wrap: anywhere;
+  }
+  .zodiac-insight p {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+  .zodiac-insight-footer {
+    width: 100%;
+    max-width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .zodiac-insight-footer small {
+    max-width: 100%;
+    font-size: 9px;
+    overflow-wrap: anywhere;
+  }
+  .zodiac-insight-footer a {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
