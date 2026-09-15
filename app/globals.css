@@ -1004,7 +1004,7 @@ img { max-width: 100%; }
   box-shadow: none;
   outline: none;
   filter: drop-shadow(0 0 10px rgba(245, 221, 180, .9)) drop-shadow(0 0 24px rgba(224, 120, 120, .55));
-  transform: translate3d(-50%, -50%, calc(var(--sign-depth) + 42px)) scale(1.14);
+  transform: translate3d(-50%, -50%, var(--sign-depth)) scale(1.08);
 }
 .zodiac-sign:focus-visible {
   outline: 2px solid rgba(245, 221, 180, .8);
