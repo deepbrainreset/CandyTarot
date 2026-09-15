@@ -150,10 +150,10 @@ const zodiacInsights: Record<string, ZodiacInsight[]> = {
       sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7652860642348649749",
     },
     {
-      title: "Una respuesta que también te cuida",
-      body: "Si la energía ariana se repliega, cambia la urgencia por una pregunta limpia: ¿hay encuentro posible o estás sosteniendo tú todo el vínculo? Tu deseo también necesita un lugar en la lectura.",
-      sourceTopic: "Tema visible: qué hacer cuando Aries, Cáncer o Acuario se alejan",
-      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7652860642348649749",
+      title: "Leo y Aries: química con voluntad",
+      body: "Otra publicación de Emilia vincula Leo y Aries. Si la chispa aparece, no la confundas con destino: mira si el entusiasmo se transforma en un encuentro que también te cuida.",
+      sourceTopic: "Tema visible: Leo y Aries",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7132087228947287302",
     },
   ],
   tauro: [
@@ -206,10 +206,10 @@ const zodiacInsights: Record<string, ZodiacInsight[]> = {
       sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7125010634021801221",
     },
     {
-      title: "Corazón con dignidad",
-      body: "Leo puede amar con brillo y también necesitar reconocimiento. Da lugar al corazón, pero no negocies tu dignidad por una escena intensa: la calidez verdadera también sabe ser recíproca.",
-      sourceTopic: "Tema visible: hombre de Leo",
-      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7125010634021801221",
+      title: "Leo y Aries: una chispa visible",
+      body: "En otra publicación, Emilia reúne Leo y Aries. La intensidad puede ser hermosa, pero la señal que importa es la que se sostiene después del primer impulso.",
+      sourceTopic: "Tema visible: Leo y Aries",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7132087228947287302",
     },
   ],
   virgo: [
@@ -220,10 +220,10 @@ const zodiacInsights: Record<string, ZodiacInsight[]> = {
       sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
     },
     {
-      title: "Claridad sin sobreanalizar",
-      body: "Ordenar ayuda, pero no todo silencio es un problema que tengas que resolver. Hoy elige un gesto claro, suelta el diagnóstico infinito y deja que la respuesta también te informe.",
-      sourceTopic: "Tema visible: qué hacer cuando los signos se alejan",
-      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
+      title: "Virgo en observación",
+      body: "En las observaciones astrológicas de Emilia también aparece Virgo. Tu atención al detalle es un recurso; úsala para leer lo concreto, no para fabricar certezas donde faltan respuestas.",
+      sourceTopic: "Tema visible: observaciones astrológicas · Virgo",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7080320788133399813",
     },
   ],
   libra: [
@@ -262,10 +262,10 @@ const zodiacInsights: Record<string, ZodiacInsight[]> = {
       sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
     },
     {
-      title: "Libertad con dirección",
-      body: "Moverte no siempre es escapar, y quedarte no siempre es perderte. Elige una dirección que te entusiasme y diles a los demás cómo acompañarte sin encerrarte.",
-      sourceTopic: "Tema visible: qué hacer cuando los signos se alejan",
-      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
+      title: "Sagitario en observación",
+      body: "Una observación astrológica de Emilia incluye a Sagitario. Moverte no siempre es escapar: elige una dirección que te entusiasme y explica cómo acompañarte sin encerrarte.",
+      sourceTopic: "Tema visible: observaciones astrológicas · Sagitario",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7080320788133399813",
     },
   ],
   capricornio: [
@@ -276,10 +276,10 @@ const zodiacInsights: Record<string, ZodiacInsight[]> = {
       sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7051809417892744454",
     },
     {
-      title: "La estructura que sí te sostiene",
-      body: "Tu capacidad de sostener procesos es un recurso, no una condena. Revisa qué responsabilidad elegiste y cuál heredaste; soltar una carga también puede ser una forma de avanzar.",
-      sourceTopic: "Tema visible: Capricornio · P2",
-      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7051809417892744454",
+      title: "Capricornio en observación",
+      body: "Otra observación astrológica de Emilia incluye a Capricornio. Tu capacidad de sostener procesos es un recurso, no una condena: revisa qué responsabilidad elegiste y cuál heredaste.",
+      sourceTopic: "Tema visible: observaciones astrológicas · Capricornio",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7080320788133399813",
     },
   ],
   acuario: [
@@ -312,14 +312,6 @@ const zodiacInsights: Record<string, ZodiacInsight[]> = {
   ],
 };
 
-function getDayOfYear(date: Date) {
-  const start = new Date(date.getFullYear(), 0, 0);
-  return Math.floor((date.getTime() - start.getTime()) / 86400000);
-}
-
-function formatZodiacDate(date: Date) {
-  return new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long" }).format(date);
-}
 
 const services: Service[] = [
   {
@@ -489,27 +481,23 @@ export default function Home() {
   const [market, setMarket] = useState<MarketKey | null>(null);
   const [regionSource, setRegionSource] = useState<"detected" | "fallback" | "detecting">("detecting");
   const [selectedZodiac, setSelectedZodiac] = useState("aries");
-  const [todayIndex, setTodayIndex] = useState(0);
-  const [todayLabel, setTodayLabel] = useState("hoy");
+  const [selectedInsightIndex, setSelectedInsightIndex] = useState(0);
   const activeMarket = markets.find((item) => item.key === market) ?? null;
   const activeZodiac = zodiacSigns.find((sign) => sign.key === selectedZodiac) ?? zodiacSigns[0];
   const insightPool = zodiacInsights[activeZodiac.key] ?? [];
-  const activeInsight = insightPool[todayIndex % (insightPool.length || 1)];
+  const activeInsight = insightPool[selectedInsightIndex % (insightPool.length || 1)];
 
-  useEffect(() => {
-    const syncZodiacDate = () => {
-      const now = new Date();
-      setTodayIndex(getDayOfYear(now));
-      setTodayLabel(formatZodiacDate(now));
-    };
+  const selectZodiac = (key: string) => {
+    const pool = zodiacInsights[key] ?? [];
+    let nextIndex = pool.length ? Math.floor(Math.random() * pool.length) : 0;
 
-    syncZodiacDate();
-    const interval = window.setInterval(syncZodiacDate, 60000);
+    if (key === selectedZodiac && pool.length > 1 && nextIndex === selectedInsightIndex) {
+      nextIndex = (nextIndex + 1) % pool.length;
+    }
 
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, []);
+    setSelectedZodiac(key);
+    setSelectedInsightIndex(nextIndex);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -668,8 +656,8 @@ export default function Home() {
           <div className="zodiac-intro">
             <p className="kicker">El atlas de tu cielo</p>
             <h2>Tu historia<br /><em>tiene capas.</em></h2>
-            <p className="zodiac-copy">Explora el sistema zodiacal y toca un signo. Cada día aparece un nuevo enfoque editorial basado en un TikTok público de Emilia, con el enlace al video original para que puedas verlo completo.</p>
-            <p className="zodiac-instruction"><span>✦</span> Toca una constelación para abrir su mensaje de hoy.</p>
+            <p className="zodiac-copy">Explora el sistema zodiacal y toca un signo. Cada toque elige al azar una ficha editorial basada en un video público de Emilia asociado a ese signo, con el enlace al original para que puedas verlo completo.</p>
+            <p className="zodiac-instruction"><span>✦</span> Toca un signo para abrir una ficha aleatoria.</p>
             <a className="quiet-link light-link" href="#lecturas">Explorar una lectura <span>↗</span></a>
           </div>
           <div className="zodiac-experience">
@@ -693,7 +681,7 @@ export default function Home() {
                     key={sign.key}
                     type="button"
                     style={{ top: sign.top, left: sign.left }}
-                    onClick={() => setSelectedZodiac(sign.key)}
+                    onClick={() => selectZodiac(sign.key)}
                     aria-pressed={selectedZodiac === sign.key}
                     aria-label={"Ver mensaje diario para " + sign.name}
                   >
@@ -711,13 +699,13 @@ export default function Home() {
               <article className="zodiac-insight" aria-live="polite">
                 <div className="zodiac-insight-meta">
                   <span>{activeZodiac.glyph} {activeZodiac.name}</span>
-                  <small>Mensaje diario · {todayLabel}</small>
+                  <small>Selección aleatoria · video relacionado</small>
                 </div>
                 <h3>{activeInsight.title}</h3>
                 <p>{activeInsight.body}</p>
                 <div className="zodiac-insight-footer">
                   <small>{activeInsight.sourceTopic}<br />Resumen editorial del tema visible · no es una cita textual.</small>
-                  <a href={activeInsight.sourceUrl} target="_blank" rel="noreferrer">Ver TikTok fuente <span>↗</span></a>
+                  <a href={activeInsight.sourceUrl} target="_blank" rel="noreferrer">Ver video fuente <span>↗</span></a>
                 </div>
               </article>
             ) : null}
