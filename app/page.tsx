@@ -98,11 +98,7 @@ const latinAmericanCountryCodes = new Set([
   "VE",
 ]);
 
-function isMarketKey(value: string | null): value is MarketKey {
-  return markets.some((item) => item.key === value);
-}
-
-function marketFromCountry(country: string): MarketKey {
+function marketFromCountry(country: string): MarketKey | null {
   const normalizedCountry = country.trim().toUpperCase();
 
   if (normalizedCountry === "AR") return "ar";
@@ -110,26 +106,8 @@ function marketFromCountry(country: string): MarketKey {
   if (normalizedCountry === "ES") return "es";
   if (latinAmericanCountryCodes.has(normalizedCountry)) return "latam";
 
-  return "latam";
+  return null;
 }
-
-function readSavedMarket(): MarketKey | null {
-  try {
-    const storedMarket = window.localStorage.getItem("candy-tarot-market");
-    return isMarketKey(storedMarket) ? storedMarket : null;
-  } catch {
-    return null;
-  }
-}
-
-function saveMarket(market: MarketKey) {
-  try {
-    window.localStorage.setItem("candy-tarot-market", market);
-  } catch {
-    // La selección continúa activa durante esta sesión.
-  }
-}
-
 
 const services: Service[] = [
   {
@@ -296,19 +274,11 @@ function ConstellationMark({ constellation, index }: { constellation: Constellat
 }
 
 export default function Home() {
-  const [market, setMarket] = useState<MarketKey>("latam");
-  const [regionSource, setRegionSource] = useState<"detected" | "manual" | "fallback" | "detecting">("detecting");
-  const activeMarket = markets.find((item) => item.key === market) ?? markets[0]!;
+  const [market, setMarket] = useState<MarketKey | null>(null);
+  const [regionSource, setRegionSource] = useState<"detected" | "fallback" | "detecting">("detecting");
+  const activeMarket = markets.find((item) => item.key === market) ?? null;
 
   useEffect(() => {
-    const storedMarket = readSavedMarket();
-
-    if (storedMarket) {
-      setMarket(storedMarket);
-      setRegionSource("manual");
-      return;
-    }
-
     let cancelled = false;
 
     fetch("/api/geo", { cache: "no-store" })
@@ -319,23 +289,21 @@ export default function Home() {
       .then(({ country = "" }) => {
         if (cancelled) return;
 
-        setMarket(marketFromCountry(country));
-        setRegionSource(country && country !== "XX" ? "detected" : "fallback");
+        const detectedMarket = marketFromCountry(country);
+        setMarket(detectedMarket);
+        setRegionSource(detectedMarket ? "detected" : "fallback");
       })
       .catch(() => {
-        if (!cancelled) setRegionSource("fallback");
+        if (!cancelled) {
+          setMarket(null);
+          setRegionSource("fallback");
+        }
       });
 
     return () => {
       cancelled = true;
     };
   }, []);
-
-  const selectMarket = (nextMarket: MarketKey) => {
-    setMarket(nextMarket);
-    setRegionSource("manual");
-    saveMarket(nextMarket);
-  };
 
   return (
     <main>
@@ -397,33 +365,22 @@ export default function Home() {
           <p className="section-note">Cada servicio tiene una carta guía del Tarot de Marsella. No es una promesa de destino: es una imagen para entrar a la experiencia con una intención clara.</p>
         </div>
 
-        <div className="market-picker">
-          <div className="market-picker-copy">
-            <span>Mostrar precios para · {activeMarket.currency}</span>
-            <small>{activeMarket.note}</small>
-            <small className="market-source" aria-live="polite">
+        <div className="market-location" aria-live="polite">
+          <div className="market-location-copy">
+            <span>Precio según tu ubicación{activeMarket ? ` · ${activeMarket.currency}` : ""}</span>
+            <strong>{activeMarket?.label ?? "Ubicación no detectada"}</strong>
+            <small>{activeMarket?.note ?? "El precio final se confirma al reservar cuando no podemos validar el país."}</small>
+            <small className="market-source">
               {regionSource === "detected"
-                ? "Ubicación sugerida automáticamente · podés cambiarla."
-                : regionSource === "manual"
-                  ? "Selección guardada en este dispositivo."
-                  : regionSource === "fallback"
-                    ? "No pudimos detectarla; elegí la región que prefieras."
-                    : "Detectando región…"}
+                ? "País detectado automáticamente por la conexión."
+                : regionSource === "fallback"
+                  ? "No pudimos validar el país; el precio final se confirma al reservar."
+                  : "Detectando país…"}
             </small>
           </div>
-          <div className="market-tabs" role="group" aria-label="Región de precios">
-            {markets.map((item) => (
-              <button
-                key={item.key}
-                type="button"
-                className={item.key === market ? "market-tab active" : "market-tab"}
-                onClick={() => selectMarket(item.key)}
-                aria-pressed={item.key === market}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+          <span className="market-location-lock">
+            {activeMarket ? "Precios regionales" : "Precio a confirmar"}
+          </span>
         </div>
 
         <div className="service-grid">
@@ -440,14 +397,18 @@ export default function Home() {
                 <h3>{service.title}</h3>
                 <p>{service.detail}</p>
               </div>
-              <div className="service-foot"><span>{service.includes}</span><strong>{service.prices[market]}</strong></div>
+              <div className="service-foot"><span>{service.includes}</span><strong>{activeMarket ? service.prices[activeMarket.key] : "Consultar"}</strong></div>
               <a className="service-link" href="#reservar">Quiero esta lectura <span>↗</span></a>
             </article>
           ))}
         </div>
 
         <p className="tarot-credit">Cartas guía seleccionadas para Candy Tarot · referencias históricas del Tarot de Marsella en <a href={tarotSourceUrl} target="_blank" rel="noreferrer">Wikimedia Commons ↗</a></p>
-        <p className="price-note">{activeMarket.priceNote} · lecturas online</p>
+        <p className="price-note">
+          {activeMarket
+            ? `${activeMarket.priceNote} · lecturas online`
+            : "Precio personalizado según ubicación · se confirma al reservar · lecturas online"}
+        </p>
       </section>
 
       <section id="metodo" className="method section">
