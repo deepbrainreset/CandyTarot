@@ -1,5 +1,30 @@
 "use client";
 
+import { useState } from "react";
+
+type MarketKey = "ar" | "latam" | "us" | "es";
+
+type Market = {
+  key: MarketKey;
+  label: string;
+  currency: string;
+  note: string;
+  priceNote: string;
+};
+
+type Service = {
+  number: string;
+  card: string;
+  title: string;
+  eyebrow: string;
+  detail: string;
+  includes: string;
+  prices: Record<MarketKey, string>;
+  image: string;
+  alt: string;
+  featured?: boolean;
+};
+
 type Constellation = {
   name: string;
   points: Array<[number, number]>;
@@ -8,7 +33,38 @@ type Constellation = {
 
 const tarotSourceUrl = "https://commons.wikimedia.org/wiki/Category:Tarot_de_Marseille_-_Jean_Dodal";
 
-const services = [
+const markets: Market[] = [
+  {
+    key: "ar",
+    label: "Argentina",
+    currency: "ARS",
+    note: "Valores locales en pesos argentinos.",
+    priceNote: "Argentina · precios de referencia en ARS. Se confirman al reservar.",
+  },
+  {
+    key: "latam",
+    label: "Latinoamérica",
+    currency: "USD",
+    note: "Precio regional en dólares para el resto de Latinoamérica.",
+    priceNote: "Latinoamérica · precio regional en USD. La conversión local se confirma al reservar.",
+  },
+  {
+    key: "us",
+    label: "EE. UU.",
+    currency: "USD",
+    note: "Precio internacional en dólares para clientes en Estados Unidos.",
+    priceNote: "Estados Unidos · precios en USD. Se confirman al reservar.",
+  },
+  {
+    key: "es",
+    label: "España",
+    currency: "EUR",
+    note: "Precio internacional en euros para clientes en España.",
+    priceNote: "España · precios en EUR. Se confirman al reservar.",
+  },
+];
+
+const services: Service[] = [
   {
     number: "0",
     card: "El Loco",
@@ -16,7 +72,7 @@ const services = [
     eyebrow: "Para cuando necesitas una señal concreta",
     detail: "Una lectura breve y directa para mirar una situación puntual, ordenar lo que sientes y salir del bucle mental.",
     includes: "1 pregunta · audio privado · 20 min",
-    price: "$15.000",
+    prices: { ar: "ARS 15.000", latam: "US$ 18", us: "US$ 29", es: "€ 25" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok__a6ac07e9-09c3-4dec-9e9a-0123c702702b__t67onu.jpg",
     alt: "El Loco del Tarot de Marsella",
   },
@@ -27,7 +83,7 @@ const services = [
     eyebrow: "Para decisiones y vínculos",
     detail: "Dos preguntas conectadas, una lectura con contexto y una devolución que te ayuda a distinguir deseo, miedo y posibilidad.",
     includes: "2 preguntas · audio privado · 35 min",
-    price: "$26.000",
+    prices: { ar: "ARS 25.000", latam: "US$ 28", us: "US$ 49", es: "€ 45" },
     featured: true,
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok__1d0e0d0d-3d74-4ca3-b87d-a5ca5dbdc33c__ufdnce.jpg",
     alt: "Tres de Espadas del Tarot de Marsella",
@@ -39,7 +95,7 @@ const services = [
     eyebrow: "Para mirar tu situación desde más de un ángulo",
     detail: "Tres preguntas conectadas para ordenar lo que estás viviendo, distinguir prioridades y llevarte una lectura con contexto, dirección y claridad.",
     includes: "3 preguntas · audio privado · 50 min",
-    price: "$34.000",
+    prices: { ar: "ARS 34.000", latam: "US$ 38", us: "US$ 69", es: "€ 59" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok_anwnl_10573570-60fb-47ce-969c-ff8e6a233cfd__rhvw01.jpg",
     alt: "El Mundo del Tarot de Marsella",
   },
@@ -50,7 +106,7 @@ const services = [
     eyebrow: "Para entender tu forma de estar en el mundo",
     detail: "Tu carta como mapa de tendencias, recursos y desafíos. Una lectura profunda, explicada en lenguaje claro y llevada a tu vida real.",
     includes: "carta natal · PDF · audio · 75 min",
-    price: "$45.000",
+    prices: { ar: "ARS 50.000", latam: "US$ 52", us: "US$ 99", es: "€ 79" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789463058/AhaTok_Mat%C3%ADas_P%C3%B3lvora_55753bbd-892d-4c1d-be7f-16416d6ec62b__qp9jnh.jpg",
     alt: "La Estrella del Tarot de Marsella",
   },
@@ -61,7 +117,7 @@ const services = [
     eyebrow: "Para mirar un vínculo con más honestidad",
     detail: "Dos cartas, una conversación sobre la dinámica compartida y herramientas para reconocer qué los acerca y qué necesita cuidado.",
     includes: "2 cartas · PDF · audio · 90 min",
-    price: "$58.000",
+    prices: { ar: "ARS 65.000", latam: "US$ 68", us: "US$ 139", es: "€ 109" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789462742/AhaTok_Page_of_Cards_1ed311f1-6d22-49ec-9d08-4c12c9816151__ewrvhu.jpg",
     alt: "Los Enamorados del Tarot de Marsella",
   },
@@ -72,7 +128,7 @@ const services = [
     eyebrow: "La experiencia más completa",
     detail: "Tarot y astrología en una misma sesión para trabajar una pregunta central, tu momento actual y los próximos pasos posibles.",
     includes: "tarot + carta · audio · 90 min",
-    price: "$65.000",
+    prices: { ar: "ARS 78.000", latam: "US$ 82", us: "US$ 159", es: "€ 129" },
     featured: true,
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok_anwnl_10573570-60fb-47ce-969c-ff8e6a233cfd__rhvw01.jpg",
     alt: "El Mundo del Tarot de Marsella",
@@ -84,7 +140,7 @@ const services = [
     eyebrow: "Para no atravesar sola un cambio importante",
     detail: "Tres encuentros para revisar el ciclo, tomar decisiones con perspectiva y convertir una lectura en movimiento real.",
     includes: "3 sesiones · seguimiento · prioridad",
-    price: "$125.000",
+    prices: { ar: "ARS 150.000", latam: "US$ 155", us: "US$ 299", es: "€ 239" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789462840/AhaTok_Milana.Rosenwald_e7907065-b450-4af4-97a0-4a01d5ac4bbf__hxe0ih.jpg",
     alt: "La Rueda de la Fortuna del Tarot de Marsella",
   },
@@ -173,6 +229,9 @@ function ConstellationMark({ constellation, index }: { constellation: Constellat
 }
 
 export default function Home() {
+  const [market, setMarket] = useState<MarketKey>("ar");
+  const activeMarket = markets.find((item) => item.key === market) ?? markets[0]!;
+
   return (
     <main>
       <div className="sky-constellations" aria-hidden="true">
@@ -204,7 +263,7 @@ export default function Home() {
             <a className="button button-solid" href="#lecturas">Ver lecturas <span>↓</span></a>
             <a className="quiet-link" href="https://www.tiktok.com/@emiliamarsicano" target="_blank" rel="noreferrer">Conoce a Emilia <span>↗</span></a>
           </div>
-          <div className="proof-row"><span>15 años de práctica</span><i>·</i><span>Atención online</span><i>·</i><span>Argentina · Latam · España</span></div>
+          <div className="proof-row"><span>15 años de práctica</span><i>·</i><span>Atención online</span><i>·</i><span>Argentina · Latam · EE. UU. · España</span></div>
         </div>
 
         <div className="hero-portrait">
@@ -233,6 +292,26 @@ export default function Home() {
           <p className="section-note">Cada servicio tiene una carta guía del Tarot de Marsella. No es una promesa de destino: es una imagen para entrar a la experiencia con una intención clara.</p>
         </div>
 
+        <div className="market-picker">
+          <div className="market-picker-copy">
+            <span>Mostrar precios para · {activeMarket.currency}</span>
+            <small>{activeMarket.note}</small>
+          </div>
+          <div className="market-tabs" role="group" aria-label="Región de precios">
+            {markets.map((item) => (
+              <button
+                key={item.key}
+                type="button"
+                className={item.key === market ? "market-tab active" : "market-tab"}
+                onClick={() => setMarket(item.key)}
+                aria-pressed={item.key === market}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="service-grid">
           {services.map((service) => (
             <article className={service.featured ? "service-card service-card-featured" : "service-card"} key={service.title}>
@@ -247,14 +326,14 @@ export default function Home() {
                 <h3>{service.title}</h3>
                 <p>{service.detail}</p>
               </div>
-              <div className="service-foot"><span>{service.includes}</span><strong>{service.price}</strong></div>
+              <div className="service-foot"><span>{service.includes}</span><strong>{service.prices[market]}</strong></div>
               <a className="service-link" href="#reservar">Quiero esta lectura <span>↗</span></a>
             </article>
           ))}
         </div>
 
         <p className="tarot-credit">Cartas guía seleccionadas para Candy Tarot · referencias históricas del Tarot de Marsella en <a href={tarotSourceUrl} target="_blank" rel="noreferrer">Wikimedia Commons ↗</a></p>
-        <p className="price-note">Argentina: valores de referencia en pesos argentinos · Latam, EE. UU. y España: cotización en USD o EUR al reservar · lecturas online</p>
+        <p className="price-note">{activeMarket.priceNote} · lecturas online</p>
       </section>
 
       <section id="metodo" className="method section">
