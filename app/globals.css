@@ -904,7 +904,7 @@ img { max-width: 100%; }
     0 0 42px rgba(255, 255, 255, .34),
     0 0 120px rgba(224, 120, 120, .2);
   text-align: center;
-  transform: translate3d(-50%, -50%, 76px) rotateZ(9deg) rotateY(7deg) rotateX(-52deg);
+  transform: translate(-50%, -50%);
   transform-style: preserve-3d;
   animation: zodiacCorePulse 5.5s ease-in-out infinite;
 }
@@ -922,7 +922,7 @@ img { max-width: 100%; }
   border: 1px solid rgba(245, 221, 180, .23);
   border-radius: 50%;
   content: '';
-  transform: translateZ(-13px) rotateX(72deg) scaleY(.42);
+  transform: scaleY(.42);
 }
 .zodiac-core strong { position: relative; font: 500 57px var(--serif); line-height: 1; }
 .zodiac-core small {
@@ -936,6 +936,7 @@ img { max-width: 100%; }
   position: absolute;
   inset: 0;
   z-index: 20;
+  inset: 10% 0 9%;
   transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px);
   transform-style: preserve-3d;
 }
@@ -1305,7 +1306,7 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
     inset: 11% 2% 8%;
     transform: rotateX(51deg) rotateY(-5deg) rotateZ(-8deg) scale(.86);
   }
-  .zodiac-signs { transform: rotateZ(8deg) rotateY(5deg) rotateX(-51deg) translateZ(22px); }
+  .zodiac-signs { inset: 12% 0 10%; transform: rotateZ(8deg) rotateY(5deg) rotateX(-51deg) translateZ(22px); }
   .zodiac-sign {
     width: 68px;
     min-height: 58px;
@@ -1315,7 +1316,7 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .zodiac-core {
     width: 124px;
     height: 124px;
-    transform: translate3d(-50%, -50%, 74px) rotateZ(8deg) rotateY(5deg) rotateX(-51deg);
+    transform: translate(-50%, -50%);
   }
   .zodiac-core strong { font-size: 42px; }
   .zodiac-map-grid { background-size: 32px 20px; }
