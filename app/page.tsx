@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type MarketKey = "ar" | "latam" | "us" | "es";
 
@@ -63,6 +63,56 @@ const markets: Market[] = [
     priceNote: "España · precios en EUR. Se confirman al reservar.",
   },
 ];
+const latinAmericanCountryCodes = new Set([
+  "AG",
+  "BB",
+  "BO",
+  "BR",
+  "BZ",
+  "CL",
+  "CO",
+  "CR",
+  "CU",
+  "DM",
+  "DO",
+  "EC",
+  "GD",
+  "GF",
+  "GT",
+  "GY",
+  "HN",
+  "HT",
+  "JM",
+  "KN",
+  "LC",
+  "MX",
+  "NI",
+  "PA",
+  "PE",
+  "PY",
+  "SR",
+  "SV",
+  "TT",
+  "UY",
+  "VC",
+  "VE",
+]);
+
+function isMarketKey(value: string | null): value is MarketKey {
+  return markets.some((item) => item.key === value);
+}
+
+function marketFromCountry(country: string): MarketKey {
+  const normalizedCountry = country.trim().toUpperCase();
+
+  if (normalizedCountry === "AR") return "ar";
+  if (normalizedCountry === "US") return "us";
+  if (normalizedCountry === "ES") return "es";
+  if (latinAmericanCountryCodes.has(normalizedCountry)) return "latam";
+
+  return "latam";
+}
+
 
 const services: Service[] = [
   {
@@ -229,8 +279,46 @@ function ConstellationMark({ constellation, index }: { constellation: Constellat
 }
 
 export default function Home() {
-  const [market, setMarket] = useState<MarketKey>("ar");
+  const [market, setMarket] = useState<MarketKey>("latam");
+  const [regionSource, setRegionSource] = useState<"detected" | "manual" | "fallback" | "detecting">("detecting");
   const activeMarket = markets.find((item) => item.key === market) ?? markets[0]!;
+
+  useEffect(() => {
+    const storedMarket = window.localStorage.getItem("candy-tarot-market");
+
+    if (isMarketKey(storedMarket)) {
+      setMarket(storedMarket);
+      setRegionSource("manual");
+      return;
+    }
+
+    let cancelled = false;
+
+    fetch("/api/geo", { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error("No se pudo detectar la región");
+        return response.json() as Promise<{ country?: string }>;
+      })
+      .then(({ country = "" }) => {
+        if (cancelled) return;
+
+        setMarket(marketFromCountry(country));
+        setRegionSource(country && country !== "XX" ? "detected" : "fallback");
+      })
+      .catch(() => {
+        if (!cancelled) setRegionSource("fallback");
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const selectMarket = (nextMarket: MarketKey) => {
+    setMarket(nextMarket);
+    setRegionSource("manual");
+    window.localStorage.setItem("candy-tarot-market", nextMarket);
+  };
 
   return (
     <main>
@@ -296,6 +384,15 @@ export default function Home() {
           <div className="market-picker-copy">
             <span>Mostrar precios para · {activeMarket.currency}</span>
             <small>{activeMarket.note}</small>
+            <small className="market-source" aria-live="polite">
+              {regionSource === "detected"
+                ? "Ubicación sugerida automáticamente · podés cambiarla."
+                : regionSource === "manual"
+                  ? "Selección guardada en este dispositivo."
+                  : regionSource === "fallback"
+                    ? "No pudimos detectarla; elegí la región que prefieras."
+                    : "Detectando región…"}
+            </small>
           </div>
           <div className="market-tabs" role="group" aria-label="Región de precios">
             {markets.map((item) => (
@@ -303,7 +400,7 @@ export default function Home() {
                 key={item.key}
                 type="button"
                 className={item.key === market ? "market-tab active" : "market-tab"}
-                onClick={() => setMarket(item.key)}
+                onClick={() => selectMarket(item.key)}
                 aria-pressed={item.key === market}
               >
                 {item.label}
