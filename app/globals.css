@@ -789,9 +789,9 @@ img { max-width: 100%; }
 .zodiac-game-hud small { color: #8d8d98; font: inherit; }
 .zodiac-game-scene {
   position: absolute;
-  inset: 7% 3% 5%;
+  inset: 10% 5% 8%;
   z-index: 4;
-  transform: rotateX(52deg) rotateY(-7deg) rotateZ(-9deg) scale(.95);
+  transform: rotateX(52deg) rotateY(-7deg) rotateZ(-9deg) scale(.9);
   transform-style: preserve-3d;
   animation: zodiacCamera 16s ease-in-out infinite;
 }
@@ -904,7 +904,7 @@ img { max-width: 100%; }
     0 0 42px rgba(255, 255, 255, .34),
     0 0 120px rgba(224, 120, 120, .2);
   text-align: center;
-  transform: translate3d(-50%, -50%, 168px) rotateX(-52deg) rotateZ(9deg);
+  transform: translate3d(-50%, -50%, 76px) rotateZ(9deg) rotateY(7deg) rotateX(-52deg);
   transform-style: preserve-3d;
   animation: zodiacCorePulse 5.5s ease-in-out infinite;
 }
@@ -936,7 +936,7 @@ img { max-width: 100%; }
   position: absolute;
   inset: 0;
   z-index: 20;
-  transform: rotateX(-52deg) rotateZ(9deg) translateZ(47px);
+  transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px);
   transform-style: preserve-3d;
 }
 .zodiac-sign {
@@ -967,18 +967,18 @@ img { max-width: 100%; }
   animation: zodiacSignTurn 9s ease-in-out infinite;
   transition: color .25s, border-color .25s, background .25s, box-shadow .25s, transform .25s, filter .25s;
 }
-.zodiac-sign:nth-child(1) { --sign-depth: 94px; --sign-tilt: -4deg; }
-.zodiac-sign:nth-child(2) { --sign-depth: 78px; --sign-tilt: -2deg; }
-.zodiac-sign:nth-child(3) { --sign-depth: 62px; --sign-tilt: 2deg; }
-.zodiac-sign:nth-child(4) { --sign-depth: 51px; --sign-tilt: 4deg; }
-.zodiac-sign:nth-child(5) { --sign-depth: 44px; --sign-tilt: 5deg; }
-.zodiac-sign:nth-child(6) { --sign-depth: 39px; --sign-tilt: 3deg; }
-.zodiac-sign:nth-child(7) { --sign-depth: 45px; --sign-tilt: 1deg; }
-.zodiac-sign:nth-child(8) { --sign-depth: 52px; --sign-tilt: -2deg; }
-.zodiac-sign:nth-child(9) { --sign-depth: 61px; --sign-tilt: -4deg; }
-.zodiac-sign:nth-child(10) { --sign-depth: 72px; --sign-tilt: -5deg; }
-.zodiac-sign:nth-child(11) { --sign-depth: 84px; --sign-tilt: -4deg; }
-.zodiac-sign:nth-child(12) { --sign-depth: 96px; --sign-tilt: -3deg; }
+.zodiac-sign:nth-child(1) { --sign-depth: 55px; --sign-tilt: -4deg; }
+.zodiac-sign:nth-child(2) { --sign-depth: 46px; --sign-tilt: -2deg; }
+.zodiac-sign:nth-child(3) { --sign-depth: 36px; --sign-tilt: 2deg; }
+.zodiac-sign:nth-child(4) { --sign-depth: 28px; --sign-tilt: 4deg; }
+.zodiac-sign:nth-child(5) { --sign-depth: 22px; --sign-tilt: 5deg; }
+.zodiac-sign:nth-child(6) { --sign-depth: 18px; --sign-tilt: 3deg; }
+.zodiac-sign:nth-child(7) { --sign-depth: 21px; --sign-tilt: 1deg; }
+.zodiac-sign:nth-child(8) { --sign-depth: 28px; --sign-tilt: -2deg; }
+.zodiac-sign:nth-child(9) { --sign-depth: 35px; --sign-tilt: -4deg; }
+.zodiac-sign:nth-child(10) { --sign-depth: 43px; --sign-tilt: -5deg; }
+.zodiac-sign:nth-child(11) { --sign-depth: 51px; --sign-tilt: -4deg; }
+.zodiac-sign:nth-child(12) { --sign-depth: 57px; --sign-tilt: -3deg; }
 .zodiac-sign:nth-child(3n) { animation-delay: -2.2s; }
 .zodiac-sign:nth-child(4n) { animation-delay: -4.4s; }
 .zodiac-sign::before {
@@ -1302,10 +1302,10 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .zodiac-game-hud { top: 15px; right: 16px; left: 16px; }
   .zodiac-game-hud small { font-size: 8px; }
   .zodiac-game-scene {
-    inset: 9% 0 7%;
-    transform: rotateX(51deg) rotateY(-5deg) rotateZ(-8deg) scale(.9);
+    inset: 11% 2% 8%;
+    transform: rotateX(51deg) rotateY(-5deg) rotateZ(-8deg) scale(.86);
   }
-  .zodiac-signs { transform: rotateX(-51deg) rotateZ(8deg) translateZ(34px); }
+  .zodiac-signs { transform: rotateZ(8deg) rotateY(5deg) rotateX(-51deg) translateZ(22px); }
   .zodiac-sign {
     width: 68px;
     min-height: 58px;
@@ -1315,7 +1315,7 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .zodiac-core {
     width: 124px;
     height: 124px;
-    transform: translate3d(-50%, -50%, 130px) rotateX(-51deg) rotateZ(8deg);
+    transform: translate3d(-50%, -50%, 74px) rotateZ(8deg) rotateY(5deg) rotateX(-51deg);
   }
   .zodiac-core strong { font-size: 42px; }
   .zodiac-map-grid { background-size: 32px 20px; }
