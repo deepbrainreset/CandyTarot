@@ -109,6 +109,218 @@ function marketFromCountry(country: string): MarketKey | null {
   return null;
 }
 
+
+type ZodiacSign = {
+  key: string;
+  name: string;
+  glyph: string;
+  element: string;
+  top: string;
+  left: string;
+};
+
+type ZodiacInsight = {
+  title: string;
+  body: string;
+  sourceTopic: string;
+  sourceUrl: string;
+};
+
+const zodiacSigns: ZodiacSign[] = [
+  { key: "aries", name: "Aries", glyph: "♈", element: "Fuego", top: "9%", left: "50%" },
+  { key: "tauro", name: "Tauro", glyph: "♉", element: "Tierra", top: "14%", left: "68%" },
+  { key: "geminis", name: "Géminis", glyph: "♊", element: "Aire", top: "27%", left: "82%" },
+  { key: "cancer", name: "Cáncer", glyph: "♋", element: "Agua", top: "47%", left: "86%" },
+  { key: "leo", name: "Leo", glyph: "♌", element: "Fuego", top: "68%", left: "82%" },
+  { key: "virgo", name: "Virgo", glyph: "♍", element: "Tierra", top: "84%", left: "68%" },
+  { key: "libra", name: "Libra", glyph: "♎", element: "Aire", top: "90%", left: "50%" },
+  { key: "escorpio", name: "Escorpio", glyph: "♏", element: "Agua", top: "84%", left: "32%" },
+  { key: "sagitario", name: "Sagitario", glyph: "♐", element: "Fuego", top: "68%", left: "18%" },
+  { key: "capricornio", name: "Capricornio", glyph: "♑", element: "Tierra", top: "47%", left: "14%" },
+  { key: "acuario", name: "Acuario", glyph: "♒", element: "Aire", top: "27%", left: "18%" },
+  { key: "piscis", name: "Piscis", glyph: "♓", element: "Agua", top: "14%", left: "32%" },
+];
+
+const zodiacInsights: Record<string, ZodiacInsight[]> = {
+  aries: [
+    {
+      title: "Cuando Aries toma distancia",
+      body: "El TikTok de Emilia abre la pregunta por qué hacer cuando Aries se aleja. Para hoy: deja que la iniciativa tenga respuesta; una señal clara vale más que perseguir una explicación.",
+      sourceTopic: "Tema visible: qué hacer cuando Aries, Cáncer o Acuario se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7652860642348649749",
+    },
+    {
+      title: "Una respuesta que también te cuida",
+      body: "Si la energía ariana se repliega, cambia la urgencia por una pregunta limpia: ¿hay encuentro posible o estás sosteniendo tú todo el vínculo? Tu deseo también necesita un lugar en la lectura.",
+      sourceTopic: "Tema visible: qué hacer cuando Aries, Cáncer o Acuario se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7652860642348649749",
+    },
+  ],
+  tauro: [
+    {
+      title: "Tauro, observado sin apuro",
+      body: "En las observaciones astrológicas de Emilia, Tauro aparece como una energía para mirar con atención y humor. Hoy: baja el ruido, revisa lo que sí se sostiene y decide desde lo concreto.",
+      sourceTopic: "Tema visible: observaciones astrológicas · Tauro",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7080320788133399813",
+    },
+    {
+      title: "Lo que merece permanecer",
+      body: "La mirada sobre Tauro invita a distinguir constancia de inmovilidad. Algo puede darte seguridad sin pedirte que te quedes quieta: escucha qué parte de tu rutina todavía te nutre.",
+      sourceTopic: "Tema visible: observaciones astrológicas · Tauro",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7080320788133399813",
+    },
+  ],
+  geminis: [
+    {
+      title: "Conquistar a Géminis",
+      body: "Emilia lleva el tema a la conquista de Géminis. Para hoy, una conversación viva, curiosidad y humor abren más puertas que un guion perfecto: deja espacio para que aparezca lo inesperado.",
+      sourceTopic: "Tema visible: cómo conquistar a Géminis",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7280324049480224006",
+    },
+    {
+      title: "La chispa necesita aire",
+      body: "La energía geminiana se enciende con intercambio, no con control. Pregunta algo que de verdad quieras saber, escucha la respuesta y permite que el vínculo tenga movimiento.",
+      sourceTopic: "Tema visible: cómo conquistar a Géminis",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7280324049480224006",
+    },
+  ],
+  cancer: [
+    {
+      title: "Cuando Cáncer se aleja",
+      body: "El video de Emilia plantea qué hacer cuando Cáncer toma distancia. Hoy no llenes el silencio con suposiciones: ofrece una puerta cálida y observa si del otro lado también hay presencia.",
+      sourceTopic: "Tema visible: qué hacer cuando Aries, Cáncer o Acuario se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7652860642348649749",
+    },
+    {
+      title: "Cuidar sin perseguir",
+      body: "La sensibilidad necesita cuidado, pero no adivinación constante. Pregunta con ternura, protege tus límites y recuerda que acompañar a alguien no significa desaparecer de la escena.",
+      sourceTopic: "Tema visible: qué hacer cuando Aries, Cáncer o Acuario se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7652860642348649749",
+    },
+  ],
+  leo: [
+    {
+      title: "La presencia de Leo",
+      body: "En el TikTok de Emilia sobre el hombre de Leo, la atención se vuelve una forma de lenguaje. Hoy reconoce lo que quieres expresar sin actuar un personaje para conseguir una respuesta.",
+      sourceTopic: "Tema visible: hombre de Leo",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7125010634021801221",
+    },
+    {
+      title: "Corazón con dignidad",
+      body: "Leo puede amar con brillo y también necesitar reconocimiento. Da lugar al corazón, pero no negocies tu dignidad por una escena intensa: la calidez verdadera también sabe ser recíproca.",
+      sourceTopic: "Tema visible: hombre de Leo",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7125010634021801221",
+    },
+  ],
+  virgo: [
+    {
+      title: "Cuando Virgo se aleja",
+      body: "Emilia reúne a Virgo, Sagitario y Libra alrededor de una pregunta: qué hacer cuando los signos se alejan. Para Virgo, antes de corregir cada detalle, mira qué conversación está faltando.",
+      sourceTopic: "Tema visible: qué hacer cuando los signos se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
+    },
+    {
+      title: "Claridad sin sobreanalizar",
+      body: "Ordenar ayuda, pero no todo silencio es un problema que tengas que resolver. Hoy elige un gesto claro, suelta el diagnóstico infinito y deja que la respuesta también te informe.",
+      sourceTopic: "Tema visible: qué hacer cuando los signos se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
+    },
+  ],
+  libra: [
+    {
+      title: "Libra frente a la distancia",
+      body: "El video de Emilia abre para Libra la escena de los vínculos que toman distancia. Hoy busca equilibrio sin convertirte en la única persona que sostiene la armonía.",
+      sourceTopic: "Tema visible: qué hacer cuando los signos se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
+    },
+    {
+      title: "Elegir una conversación honesta",
+      body: "La paz que depende de callarte sale cara. Una pregunta amable y directa puede cuidar mucho más que una respuesta diplomática que deja tus necesidades fuera del cuadro.",
+      sourceTopic: "Tema visible: qué hacer cuando los signos se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
+    },
+  ],
+  escorpio: [
+    {
+      title: "Escorpio: mirar lo que se mueve",
+      body: "La publicación de Emilia está etiquetada con Escorpio y astrología. Para hoy, no confundas intensidad con certeza: observa qué emoción está pidiendo nombre antes de tomar una decisión.",
+      sourceTopic: "Contenido visible etiquetado: #escorpio",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7146018517802847494",
+    },
+    {
+      title: "Profundidad con elección",
+      body: "Escorpio no necesita negar lo que siente para recuperar poder. Nombra la verdad que ya reconoces, cuida tu intimidad y decide qué merece seguir entrando en tu mundo.",
+      sourceTopic: "Contenido visible etiquetado: #escorpio",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7146018517802847494",
+    },
+  ],
+  sagitario: [
+    {
+      title: "Cuando Sagitario se aleja",
+      body: "En el TikTok que reúne a Virgo, Sagitario y Libra, Emilia pregunta qué hacer ante la distancia. Hoy no achiques tu necesidad de libertad: conversa sobre ella antes de convertirla en fuga.",
+      sourceTopic: "Tema visible: qué hacer cuando los signos se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
+    },
+    {
+      title: "Libertad con dirección",
+      body: "Moverte no siempre es escapar, y quedarte no siempre es perderte. Elige una dirección que te entusiasme y diles a los demás cómo acompañarte sin encerrarte.",
+      sourceTopic: "Tema visible: qué hacer cuando los signos se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7650263266299546901",
+    },
+  ],
+  capricornio: [
+    {
+      title: "Capricornio, sin solemnidad",
+      body: "La publicación de Emilia mira a Capricornio desde el humor y la irreverencia. Hoy afloja la exigencia: no todo tiene que convertirse en una prueba de rendimiento para tener valor.",
+      sourceTopic: "Tema visible: Capricornio · P2",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7051809417892744454",
+    },
+    {
+      title: "La estructura que sí te sostiene",
+      body: "Tu capacidad de sostener procesos es un recurso, no una condena. Revisa qué responsabilidad elegiste y cuál heredaste; soltar una carga también puede ser una forma de avanzar.",
+      sourceTopic: "Tema visible: Capricornio · P2",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7051809417892744454",
+    },
+  ],
+  acuario: [
+    {
+      title: "Cuando Acuario se aleja",
+      body: "El TikTok de Emilia lleva a Acuario a la pregunta por la distancia. Hoy respeta el espacio sin convertirlo en desaparición: una comunicación breve y honesta puede cuidar el puente.",
+      sourceTopic: "Tema visible: qué hacer cuando Aries, Cáncer o Acuario se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7652860642348649749",
+    },
+    {
+      title: "Ser diferente también es vincularse",
+      body: "Tu forma singular de procesar lo que sientes merece traducción, no aislamiento. Cuenta qué necesitas y deja que la otra persona decida si puede encontrarte ahí.",
+      sourceTopic: "Tema visible: qué hacer cuando Aries, Cáncer o Acuario se alejan",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7652860642348649749",
+    },
+  ],
+  piscis: [
+    {
+      title: "Cuando Piscis pierde el interés",
+      body: "El TikTok de Emilia nombra una escena concreta: Piscis perdió el interés. Para hoy, escucha la baja de intensidad sin castigarte; la claridad también puede llegar cuando una fantasía se despide.",
+      sourceTopic: "Tema visible: Piscis perdió el interés",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7325562811222969606",
+    },
+    {
+      title: "Sensibilidad con límites",
+      body: "Sentir mucho no obliga a sostener lo que ya se volvió confuso. Vuelve a tus señales internas, pregunta lo necesario y permite que un cierre abra espacio para algo más verdadero.",
+      sourceTopic: "Tema visible: Piscis perdió el interés",
+      sourceUrl: "https://www.tiktok.com/@emiliamarsicano/video/7325562811222969606",
+    },
+  ],
+};
+
+function getDayOfYear(date: Date) {
+  const start = new Date(date.getFullYear(), 0, 0);
+  return Math.floor((date.getTime() - start.getTime()) / 86400000);
+}
+
+function formatZodiacDate(date: Date) {
+  return new Intl.DateTimeFormat("es-AR", { day: "numeric", month: "long" }).format(date);
+}
+
 const services: Service[] = [
   {
     number: "0",
@@ -276,7 +488,28 @@ function ConstellationMark({ constellation, index }: { constellation: Constellat
 export default function Home() {
   const [market, setMarket] = useState<MarketKey | null>(null);
   const [regionSource, setRegionSource] = useState<"detected" | "fallback" | "detecting">("detecting");
+  const [selectedZodiac, setSelectedZodiac] = useState("aries");
+  const [todayIndex, setTodayIndex] = useState(0);
+  const [todayLabel, setTodayLabel] = useState("hoy");
   const activeMarket = markets.find((item) => item.key === market) ?? null;
+  const activeZodiac = zodiacSigns.find((sign) => sign.key === selectedZodiac) ?? zodiacSigns[0];
+  const insightPool = zodiacInsights[activeZodiac.key] ?? [];
+  const activeInsight = insightPool[todayIndex % (insightPool.length || 1)];
+
+  useEffect(() => {
+    const syncZodiacDate = () => {
+      const now = new Date();
+      setTodayIndex(getDayOfYear(now));
+      setTodayLabel(formatZodiacDate(now));
+    };
+
+    syncZodiacDate();
+    const interval = window.setInterval(syncZodiacDate, 60000);
+
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -308,6 +541,11 @@ export default function Home() {
   return (
     <main>
       <div className="sky-constellations" aria-hidden="true">
+        <div className="shooting-stars">
+          <span className="shooting-star shooting-star-1" />
+          <span className="shooting-star shooting-star-2" />
+          <span className="shooting-star shooting-star-3" />
+        </div>
         {constellations.map((constellation, index) => (
           <ConstellationMark key={constellation.name} constellation={constellation} index={index} />
         ))}
@@ -425,21 +663,64 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="zodiac-section section" aria-label="Cielo de constelaciones zodiacales">
+      <section className="zodiac-section section" aria-label="Atlas zodiacal interactivo">
         <div className="shell zodiac-layout">
-          <div>
+          <div className="zodiac-intro">
             <p className="kicker">El atlas de tu cielo</p>
             <h2>Tu historia<br /><em>tiene capas.</em></h2>
-            <p className="zodiac-copy">Las doce constelaciones aparecen una sola vez en el cielo de fondo, como una carta celeste continua. La carta natal no te encierra en una etiqueta: te da un lenguaje para entender tus ritmos, tus tensiones y tus recursos.</p>
+            <p className="zodiac-copy">Explora el sistema zodiacal y toca un signo. Cada día aparece un nuevo enfoque editorial basado en un TikTok público de Emilia, con el enlace al video original para que puedas verlo completo.</p>
+            <p className="zodiac-instruction"><span>✦</span> Toca una constelación para abrir su mensaje de hoy.</p>
             <a className="quiet-link light-link" href="#lecturas">Explorar una lectura <span>↗</span></a>
           </div>
-          <div className="zodiac-cloud" aria-hidden="true">
-            <div className="zodiac-orbit orbit-a" />
-            <div className="zodiac-orbit orbit-b" />
-            <div className="zodiac-center"><strong>12</strong><small>constelaciones<br />una vez cada una</small></div>
-            <span className="zodiac-legend-note note-a">cielo natal</span>
-            <span className="zodiac-legend-note note-b">carta celeste</span>
-            <span className="zodiac-legend-note note-c">mapa interior</span>
+          <div className="zodiac-experience">
+            <div className="zodiac-cloud">
+              <div className="zodiac-system" aria-hidden="true">
+                <div className="zodiac-orbit orbit-a" />
+                <div className="zodiac-orbit orbit-b" />
+                <div className="zodiac-orbit orbit-c" />
+                <span className="zodiac-planet planet-one" />
+                <span className="zodiac-planet planet-two" />
+                <span className="zodiac-planet planet-three" />
+              </div>
+              <div className="zodiac-core" aria-hidden="true">
+                <strong>12</strong>
+                <small>signos<br />en órbita</small>
+              </div>
+              <div className="zodiac-signs" role="list" aria-label="Selecciona tu signo">
+                {zodiacSigns.map((sign) => (
+                  <button
+                    className={"zodiac-sign " + (selectedZodiac === sign.key ? "is-active" : "")}
+                    key={sign.key}
+                    type="button"
+                    style={{ top: sign.top, left: sign.left }}
+                    onClick={() => setSelectedZodiac(sign.key)}
+                    aria-pressed={selectedZodiac === sign.key}
+                    aria-label={"Ver mensaje diario para " + sign.name}
+                  >
+                    <span className="zodiac-glyph">{sign.glyph}</span>
+                    <span className="zodiac-sign-name">{sign.name}</span>
+                    <small className="zodiac-sign-element">{sign.element}</small>
+                  </button>
+                ))}
+              </div>
+              <span className="zodiac-legend-note note-a">cielo natal</span>
+              <span className="zodiac-legend-note note-b">carta celeste</span>
+              <span className="zodiac-legend-note note-c">mapa interior</span>
+            </div>
+            {activeZodiac && activeInsight ? (
+              <article className="zodiac-insight" aria-live="polite">
+                <div className="zodiac-insight-meta">
+                  <span>{activeZodiac.glyph} {activeZodiac.name}</span>
+                  <small>Mensaje diario · {todayLabel}</small>
+                </div>
+                <h3>{activeInsight.title}</h3>
+                <p>{activeInsight.body}</p>
+                <div className="zodiac-insight-footer">
+                  <small>{activeInsight.sourceTopic}<br />Resumen editorial del tema visible · no es una cita textual.</small>
+                  <a href={activeInsight.sourceUrl} target="_blank" rel="noreferrer">Ver TikTok fuente <span>↗</span></a>
+                </div>
+              </article>
+            ) : null}
           </div>
         </div>
       </section>
