@@ -46,17 +46,51 @@ img { max-width: 100%; }
   pointer-events: none;
   mix-blend-mode: screen;
 }
+.sky-constellations::after {
+  position: absolute;
+  inset: -12%;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 7% 14%, rgba(255, 255, 255, .95) 0 1px, transparent 1.9px),
+    radial-gradient(circle at 18% 72%, rgba(245, 221, 180, .9) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 29% 29%, rgba(255, 255, 255, .92) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 42% 83%, rgba(255, 255, 255, .9) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 54% 17%, rgba(245, 221, 180, .94) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 66% 62%, rgba(255, 255, 255, .9) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 77% 24%, rgba(255, 255, 255, .94) 0 1px, transparent 1.9px),
+    radial-gradient(circle at 91% 78%, rgba(245, 221, 180, .9) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 84% 48%, rgba(255, 255, 255, .88) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 11% 46%, rgba(255, 255, 255, .88) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 48% 47%, rgba(245, 221, 180, .86) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 96% 11%, rgba(255, 255, 255, .88) 0 1px, transparent 1.8px);
+  content: '';
+  opacity: .2;
+  animation: skySparkle 11s ease-in-out infinite;
+}
 .constellation {
   position: absolute;
+  z-index: 1;
   display: block;
   width: clamp(112px, 13vw, 186px);
   color: rgba(227, 218, 202, .78);
   opacity: .31;
   filter: drop-shadow(0 0 7px rgba(224, 120, 120, .25));
+  animation: constellationFloat 18s ease-in-out infinite;
+  will-change: transform, translate;
 }
 .constellation svg { display: block; width: 100%; height: auto; overflow: visible; }
 .constellation line { stroke: rgba(215, 202, 181, .78); stroke-width: .72; vector-effect: non-scaling-stroke; }
-.constellation circle { fill: #f5ddb4; filter: drop-shadow(0 0 4px rgba(245, 221, 180, .9)); }
+.constellation circle {
+  fill: #f5ddb4;
+  filter: drop-shadow(0 0 4px rgba(245, 221, 180, .9));
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: starTwinkle 4.8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+.constellation circle:nth-of-type(2n) { animation-delay: -1.4s; }
+.constellation circle:nth-of-type(3n) { animation-delay: -2.7s; animation-duration: 3.2s; }
+.constellation circle:nth-of-type(5n) { animation-delay: -.6s; animation-duration: 5.1s; }
 .constellation small {
   display: block;
   margin-top: 2px;
@@ -78,6 +112,18 @@ img { max-width: 100%; }
 .constellation-10 { top: 16%; right: 27%; transform: rotate(-7deg); }
 .constellation-11 { bottom: 29%; right: 38%; transform: rotate(10deg); }
 .constellation-12 { bottom: 7%; left: 36%; transform: rotate(-8deg); }
+.constellation-1 { animation-delay: -2s; animation-duration: 17s; }
+.constellation-2 { animation-delay: -6s; animation-duration: 21s; }
+.constellation-3 { animation-delay: -10s; animation-duration: 19s; }
+.constellation-4 { animation-delay: -4s; animation-duration: 23s; }
+.constellation-5 { animation-delay: -14s; animation-duration: 18s; }
+.constellation-6 { animation-delay: -8s; animation-duration: 24s; }
+.constellation-7 { animation-delay: -12s; animation-duration: 20s; }
+.constellation-8 { animation-delay: -3s; animation-duration: 22s; }
+.constellation-9 { animation-delay: -16s; animation-duration: 26s; }
+.constellation-10 { animation-delay: -7s; animation-duration: 18.5s; }
+.constellation-11 { animation-delay: -11s; animation-duration: 25s; }
+.constellation-12 { animation-delay: -5s; animation-duration: 21.5s; }
 
 .nav {
   position: relative;
@@ -89,7 +135,17 @@ img { max-width: 100%; }
   border-bottom: 1px solid var(--line);
 }
 .brand { display: block; width: 150px; }
-.brand img { display: block; width: 100%; height: auto; mix-blend-mode: screen; }
+.brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: screen;
+  filter:
+    drop-shadow(0 0 3px rgba(255, 255, 255, .95))
+    drop-shadow(0 0 10px rgba(255, 255, 255, .58))
+    drop-shadow(0 0 24px rgba(255, 255, 255, .28));
+  animation: moonHalo 5.5s ease-in-out infinite;
+}
 .nav-links {
   display: flex;
   gap: 34px;
@@ -295,6 +351,35 @@ img { max-width: 100%; }
 }
 .marquee span { padding: 0 17px; color: var(--red-bright); }
 @keyframes marquee { to { transform: translateX(-30%); } }
+
+@keyframes constellationFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 8px -7px; }
+}
+@keyframes starTwinkle {
+  0%, 100% { opacity: .42; transform: scale(.72); }
+  44% { opacity: .68; transform: scale(1); }
+  52% { opacity: 1; transform: scale(1.38); }
+  62% { opacity: .7; transform: scale(.92); }
+}
+@keyframes skySparkle {
+  0%, 100% { opacity: .12; transform: scale(1) translate3d(0, 0, 0); }
+  50% { opacity: .34; transform: scale(1.035) translate3d(1%, -1%, 0); }
+}
+@keyframes moonHalo {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 3px rgba(255, 255, 255, .9))
+      drop-shadow(0 0 10px rgba(255, 255, 255, .5))
+      drop-shadow(0 0 22px rgba(255, 255, 255, .22));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 5px rgba(255, 255, 255, 1))
+      drop-shadow(0 0 15px rgba(255, 255, 255, .72))
+      drop-shadow(0 0 32px rgba(255, 255, 255, .36));
+  }
+}
 
 .market-strip {
   position: relative;
@@ -654,4 +739,15 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .about-copy > p:not(.kicker) { font-size: 15px; }
   .footer-inner { grid-template-columns: 1fr; gap: 13px; }
   .footer small { margin-top: 12px; text-align: left; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .sky-constellations::after,
+  .constellation,
+  .constellation circle,
+  .brand img,
+  .marquee-track {
+    animation: none !important;
+  }
 }
