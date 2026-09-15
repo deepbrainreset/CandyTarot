@@ -443,8 +443,9 @@ img { max-width: 100%; }
 
 
 @keyframes zodiacGlyphSpin {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(360deg); }
+  0% { transform: rotateY(0deg); }
+  90.9% { transform: rotateY(360deg); }
+  100% { transform: rotateY(360deg); }
 }
 
 @keyframes shootingStar {
@@ -821,7 +822,7 @@ img { max-width: 100%; }
   z-index: 4;
   transform: rotateX(52deg) rotateY(-7deg) rotateZ(-9deg) scale(.9);
   transform-style: preserve-3d;
-  animation: zodiacCamera 16s ease-in-out infinite;
+  animation: none;
 }
 .zodiac-game-scene::before,
 .zodiac-game-scene::after {
@@ -854,7 +855,7 @@ img { max-width: 100%; }
   z-index: 3;
   transform: translateZ(-65px);
   transform-style: preserve-3d;
-  animation: zodiacSystemFloat 18s ease-in-out infinite;
+  animation: none;
   pointer-events: none;
 }
 .zodiac-orbit {
@@ -952,9 +953,10 @@ img { max-width: 100%; }
   position: absolute;
   inset: 14% 9% 12%;
   z-index: 20;
-  transform: none;
+  transform: none !important;
   transform-style: preserve-3d;
   perspective: 720px;
+  animation: none !important;
   pointer-events: none;
 }
 .zodiac-sign {
@@ -980,8 +982,9 @@ img { max-width: 100%; }
   transform-style: preserve-3d;
   backface-visibility: hidden;
   pointer-events: auto;
-  transition: color .25s, filter .25s, transform .25s;
-  will-change: transform;
+  animation: none !important;
+  transition: color .25s, filter .25s;
+  will-change: auto;
 }
 .zodiac-sign:nth-child(1) { --sign-depth: 55px; }
 .zodiac-sign:nth-child(2) { --sign-depth: 46px; }
@@ -1004,7 +1007,7 @@ img { max-width: 100%; }
   box-shadow: none;
   outline: none;
   filter: drop-shadow(0 0 10px rgba(245, 221, 180, .9)) drop-shadow(0 0 24px rgba(224, 120, 120, .55));
-  transform: translate3d(-50%, -50%, var(--sign-depth)) scale(1.08);
+  transform: translate3d(-50%, -50%, var(--sign-depth));
 }
 .zodiac-sign:focus-visible {
   outline: 2px solid rgba(245, 221, 180, .8);
@@ -1021,7 +1024,7 @@ img { max-width: 100%; }
   transform-origin: center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  animation: zodiacGlyphSpin 7.5s linear infinite;
+  animation: zodiacGlyphSpin 5.5s linear infinite;
   will-change: transform;
   text-shadow: 0 0 11px rgba(224, 120, 120, .5), 0 0 20px rgba(245, 221, 180, .26);
 }
@@ -1037,7 +1040,8 @@ img { max-width: 100%; }
   text-transform: uppercase;
   white-space: nowrap;
   writing-mode: horizontal-tb;
-  transform: none;
+  transform: none !important;
+  animation: none !important;
 }
 .zodiac-sign-element {
   margin-top: 3px;
