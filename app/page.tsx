@@ -321,7 +321,7 @@ const services: Service[] = [
     eyebrow: "Para cuando necesitas una señal concreta",
     detail: "Una lectura breve y directa para mirar una situación puntual, ordenar lo que sientes y salir del bucle mental.",
     includes: "1 pregunta · audio privado · 20 min",
-    prices: { ar: "ARS 15.000", latam: "US$ 18", us: "US$ 29", es: "€ 25" },
+    prices: { ar: "ARS 22.000", latam: "US$ 24", us: "US$ 39", es: "€ 29" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok__a6ac07e9-09c3-4dec-9e9a-0123c702702b__t67onu.jpg",
     alt: "El Loco del Tarot de Marsella",
   },
@@ -332,7 +332,7 @@ const services: Service[] = [
     eyebrow: "Para decisiones y vínculos",
     detail: "Dos preguntas conectadas, una lectura con contexto y una devolución que te ayuda a distinguir deseo, miedo y posibilidad.",
     includes: "2 preguntas · audio privado · 35 min",
-    prices: { ar: "ARS 25.000", latam: "US$ 28", us: "US$ 49", es: "€ 45" },
+    prices: { ar: "ARS 36.000", latam: "US$ 39", us: "US$ 65", es: "€ 49" },
     featured: true,
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok__1d0e0d0d-3d74-4ca3-b87d-a5ca5dbdc33c__ufdnce.jpg",
     alt: "Tres de Espadas del Tarot de Marsella",
@@ -344,7 +344,7 @@ const services: Service[] = [
     eyebrow: "Para mirar tu situación desde más de un ángulo",
     detail: "Tres preguntas conectadas para ordenar lo que estás viviendo, distinguir prioridades y llevarte una lectura con contexto, dirección y claridad.",
     includes: "3 preguntas · audio privado · 50 min",
-    prices: { ar: "ARS 34.000", latam: "US$ 38", us: "US$ 69", es: "€ 59" },
+    prices: { ar: "ARS 49.000", latam: "US$ 55", us: "US$ 89", es: "€ 69" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok_anwnl_10573570-60fb-47ce-969c-ff8e6a233cfd__rhvw01.jpg",
     alt: "El Mundo del Tarot de Marsella",
   },
@@ -355,7 +355,7 @@ const services: Service[] = [
     eyebrow: "Para entender tu forma de estar en el mundo",
     detail: "Tu carta como mapa de tendencias, recursos y desafíos. Una lectura profunda, explicada en lenguaje claro y llevada a tu vida real.",
     includes: "carta natal · PDF · audio · 75 min",
-    prices: { ar: "ARS 50.000", latam: "US$ 52", us: "US$ 99", es: "€ 79" },
+    prices: { ar: "ARS 72.000", latam: "US$ 75", us: "US$ 149", es: "€ 89" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789463058/AhaTok_Mat%C3%ADas_P%C3%B3lvora_55753bbd-892d-4c1d-be7f-16416d6ec62b__qp9jnh.jpg",
     alt: "La Estrella del Tarot de Marsella",
   },
@@ -366,7 +366,7 @@ const services: Service[] = [
     eyebrow: "Para mirar un vínculo con más honestidad",
     detail: "Dos cartas, una conversación sobre la dinámica compartida y herramientas para reconocer qué los acerca y qué necesita cuidado.",
     includes: "2 cartas · PDF · audio · 90 min",
-    prices: { ar: "ARS 65.000", latam: "US$ 68", us: "US$ 139", es: "€ 109" },
+    prices: { ar: "ARS 94.000", latam: "US$ 99", us: "US$ 199", es: "€ 129" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789462742/AhaTok_Page_of_Cards_1ed311f1-6d22-49ec-9d08-4c12c9816151__ewrvhu.jpg",
     alt: "Los Enamorados del Tarot de Marsella",
   },
@@ -377,7 +377,7 @@ const services: Service[] = [
     eyebrow: "La experiencia más completa",
     detail: "Tarot y astrología en una misma sesión para trabajar una pregunta central, tu momento actual y los próximos pasos posibles.",
     includes: "tarot + carta · audio · 90 min",
-    prices: { ar: "ARS 78.000", latam: "US$ 82", us: "US$ 159", es: "€ 129" },
+    prices: { ar: "ARS 118.000", latam: "US$ 125", us: "US$ 249", es: "€ 159" },
     featured: true,
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789461789/AhaTok_anwnl_10573570-60fb-47ce-969c-ff8e6a233cfd__rhvw01.jpg",
     alt: "El Mundo del Tarot de Marsella",
@@ -389,7 +389,7 @@ const services: Service[] = [
     eyebrow: "Para no atravesar sola un cambio importante",
     detail: "Tres encuentros para revisar el ciclo, tomar decisiones con perspectiva y convertir una lectura en movimiento real.",
     includes: "3 sesiones · seguimiento · prioridad",
-    prices: { ar: "ARS 150.000", latam: "US$ 155", us: "US$ 299", es: "€ 239" },
+    prices: { ar: "ARS 220.000", latam: "US$ 229", us: "US$ 449", es: "€ 279" },
     image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789462840/AhaTok_Milana.Rosenwald_e7907065-b450-4af4-97a0-4a01d5ac4bbf__hxe0ih.jpg",
     alt: "La Rueda de la Fortuna del Tarot de Marsella",
   },
@@ -562,7 +562,7 @@ export default function Home() {
             <a className="button button-solid" href="#lecturas">Ver lecturas <span>↓</span></a>
             <a className="quiet-link" href="https://www.tiktok.com/@emiliamarsicano" target="_blank" rel="noreferrer">Conoce a Emilia <span>↗</span></a>
           </div>
-          <div className="proof-row"><span>15 años de práctica</span><i>·</i><span>Atención online</span><i>·</i><span>Argentina · Latam · EE. UU. · España</span></div>
+          <div className="proof-row"><span>2,9 M me gusta en TikTok</span><i>·</i><span>15 años de práctica</span><i>·</i><span>Atención online</span><i>·</i><span>Argentina · Latam · EE. UU. · España</span></div>
         </div>
 
         <div className="hero-portrait">
@@ -641,7 +641,7 @@ export default function Home() {
         <div className="shell method-inner">
           <div className="method-title"><p className="kicker">La experiencia Candy Tarot</p><h2>Menos ruido.<br /><em>Más lectura.</em></h2></div>
           <div className="method-copy">
-            <p>Una consulta no tiene que asustarte ni decirte qué hacer. Puede ayudarte a mirar la escena completa, reconocer patrones y encontrar una pregunta mejor.</p>
+            <p>Con 15 años de práctica y una comunidad que ya reúne 2,9 M de me gusta en TikTok, cada lectura conserva el cuidado de un servicio 1:1. Los valores se adaptan por mercado para que la propuesta sea clara en Argentina, Latinoamérica, EE. UU. y España.</p>
             <div className="method-points">
               <div><span>01</span><strong>Preparación</strong><p>Antes de encontrarnos, recibo tu pregunta y el contexto que quieras compartir.</p></div>
               <div><span>02</span><strong>Lectura</strong><p>Tarot y astrología se traducen a una conversación clara, cálida y sin respuestas prefabricadas.</p></div>
@@ -656,40 +656,51 @@ export default function Home() {
           <div className="zodiac-intro">
             <p className="kicker">El atlas de tu cielo</p>
             <h2>Tu historia<br /><em>tiene capas.</em></h2>
-            <p className="zodiac-copy">Explora el sistema zodiacal y toca un signo. Cada toque elige al azar una ficha editorial basada en un video público de Emilia asociado a ese signo, con el enlace al original para que puedas verlo completo.</p>
-            <p className="zodiac-instruction"><span>✦</span> Toca un signo para abrir una ficha aleatoria.</p>
+            <p className="zodiac-copy">Entrá al mapa celeste y tocá un signo. Cada toque activa una ficha editorial aleatoria basada en un video público de Emilia asociado a ese signo, con el enlace al original para que puedas verlo completo.</p>
+            <p className="zodiac-instruction"><span>✦</span> Tocá un signo para revelar una ficha aleatoria.</p>
             <a className="quiet-link light-link" href="#lecturas">Explorar una lectura <span>↗</span></a>
           </div>
           <div className="zodiac-experience">
             <div className="zodiac-cloud">
-              <div className="zodiac-system" aria-hidden="true">
-                <div className="zodiac-orbit orbit-a" />
-                <div className="zodiac-orbit orbit-b" />
-                <div className="zodiac-orbit orbit-c" />
-                <span className="zodiac-planet planet-one" />
-                <span className="zodiac-planet planet-two" />
-                <span className="zodiac-planet planet-three" />
+              <div className="zodiac-game-hud" aria-hidden="true">
+                <span><i>●</i> mapa celeste // 03</span>
+                <small>tocá para revelar</small>
               </div>
-              <div className="zodiac-core" aria-hidden="true">
-                <strong>12</strong>
-                <small>signos<br />en órbita</small>
+              <div className="zodiac-game-scene">
+                <div className="zodiac-map-grid" aria-hidden="true" />
+                <div className="zodiac-system" aria-hidden="true">
+                  <div className="zodiac-orbit orbit-a" />
+                  <div className="zodiac-orbit orbit-b" />
+                  <div className="zodiac-orbit orbit-c" />
+                  <span className="zodiac-planet planet-one" />
+                  <span className="zodiac-planet planet-two" />
+                  <span className="zodiac-planet planet-three" />
+                </div>
+                <div className="zodiac-core" aria-hidden="true">
+                  <strong>12</strong>
+                  <small>signos<br />en órbita</small>
+                </div>
+                <div className="zodiac-signs" role="list" aria-label="Selecciona tu signo">
+                  {zodiacSigns.map((sign) => (
+                    <button
+                      className={"zodiac-sign " + (selectedZodiac === sign.key ? "is-active" : "")}
+                      key={sign.key}
+                      type="button"
+                      style={{ top: sign.top, left: sign.left }}
+                      onClick={() => selectZodiac(sign.key)}
+                      aria-pressed={selectedZodiac === sign.key}
+                      aria-label={"Ver ficha aleatoria para " + sign.name}
+                    >
+                      <span className="zodiac-glyph">{sign.glyph}</span>
+                      <span className="zodiac-sign-name">{sign.name}</span>
+                      <small className="zodiac-sign-element">{sign.element}</small>
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="zodiac-signs" role="list" aria-label="Selecciona tu signo">
-                {zodiacSigns.map((sign) => (
-                  <button
-                    className={"zodiac-sign " + (selectedZodiac === sign.key ? "is-active" : "")}
-                    key={sign.key}
-                    type="button"
-                    style={{ top: sign.top, left: sign.left }}
-                    onClick={() => selectZodiac(sign.key)}
-                    aria-pressed={selectedZodiac === sign.key}
-                    aria-label={"Ver ficha aleatoria para " + sign.name}
-                  >
-                    <span className="zodiac-glyph">{sign.glyph}</span>
-                    <span className="zodiac-sign-name">{sign.name}</span>
-                    <small className="zodiac-sign-element">{sign.element}</small>
-                  </button>
-                ))}
+              <span className="zodiac-scanline" aria-hidden="true" />
+              <div className="zodiac-game-status" aria-hidden="true">
+                <span>órbita activa</span><strong>12 / 12</strong>
               </div>
               <span className="zodiac-legend-note note-a">cielo natal</span>
               <span className="zodiac-legend-note note-b">carta celeste</span>
