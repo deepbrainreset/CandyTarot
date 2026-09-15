@@ -62,8 +62,8 @@ const services = [
     detail: "Dos cartas, una conversación sobre la dinámica compartida y herramientas para reconocer qué los acerca y qué necesita cuidado.",
     includes: "2 cartas · PDF · audio · 90 min",
     price: "$58.000",
-    image: "https://upload.wikimedia.org/wikipedia/commons/7/70/Jean_Dodal_Tarot_trump_06.jpg",
-    alt: "Los Enamorados, L'Amoureux, del Tarot de Marsella de Jean Dodal",
+    image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789462742/AhaTok_Page_of_Cards_1ed311f1-6d22-49ec-9d08-4c12c9816151__ewrvhu.jpg",
+    alt: "Los Enamorados del Tarot de Marsella",
   },
   {
     number: "XXI",
@@ -85,8 +85,8 @@ const services = [
     detail: "Tres encuentros para revisar el ciclo, tomar decisiones con perspectiva y convertir una lectura en movimiento real.",
     includes: "3 sesiones · seguimiento · prioridad",
     price: "$125.000",
-    image: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Jean_Dodal_Tarot_trump_10.jpg",
-    alt: "La Rueda de la Fortuna del Tarot de Marsella de Jean Dodal",
+    image: "https://res.cloudinary.com/dw4k14vmn/image/upload/v1789462840/AhaTok_Milana.Rosenwald_e7907065-b450-4af4-97a0-4a01d5ac4bbf__hxe0ih.jpg",
+    alt: "La Rueda de la Fortuna del Tarot de Marsella",
   },
 ];
 
