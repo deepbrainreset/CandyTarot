@@ -565,16 +565,68 @@ export default function Home() {
           <div className="proof-row"><span>2,9 M me gusta en TikTok</span><i>·</i><span>15 años de práctica</span><i>·</i><span>Atención online</span><i>·</i><span>Argentina · Latam · EE. UU. · España</span></div>
         </div>
 
-        <div className="hero-portrait">
-          <div className="portrait-frame"><img src="/emilia.jpg" alt="Emilia Marsicano" /></div>
-          <div className="portrait-label"><span>Emilia Marsicano</span><small>lecturas con presencia</small></div>
-          <div className="floating-card floating-card-top">
-            <span>carta guía</span>
-            <img src={services[3].image} alt="" />
-            <em>La Estrella · XVII</em>
+        <div className="hero-zodiac">
+          <div className="zodiac-cloud hero-zodiac-cloud" role="group" aria-label="Mapa zodiacal interactivo">
+            <div className="zodiac-game-hud" aria-hidden="true">
+              <span><i>●</i> mapa celeste // 03</span>
+              <small>tocá para revelar</small>
+            </div>
+            <div className="zodiac-game-scene">
+              <div className="zodiac-map-grid" aria-hidden="true" />
+              <div className="zodiac-system" aria-hidden="true">
+                <div className="zodiac-orbit orbit-a" />
+                <div className="zodiac-orbit orbit-b" />
+                <div className="zodiac-orbit orbit-c" />
+                <span className="zodiac-planet planet-one" />
+                <span className="zodiac-planet planet-two" />
+                <span className="zodiac-planet planet-three" />
+              </div>
+              <div className="zodiac-signs" role="list" aria-label="Selecciona tu signo">
+                {zodiacSigns.map((sign) => (
+                  <button
+                    className={"zodiac-sign " + (selectedZodiac === sign.key ? "is-active" : "")}
+                    key={sign.key}
+                    type="button"
+                    style={{ top: sign.top, left: sign.left }}
+                    onClick={() => selectZodiac(sign.key)}
+                    aria-pressed={selectedZodiac === sign.key}
+                    aria-label={"Ver ficha aleatoria para " + sign.name}
+                  >
+                    <span className="zodiac-glyph">{sign.glyph}</span>
+                    <span className="zodiac-sign-name">{sign.name}</span>
+                    <small className="zodiac-sign-element">{sign.element}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="zodiac-core" aria-hidden="true">
+              <strong>12</strong>
+              <small>signos<br />en órbita</small>
+            </div>
+            <span className="zodiac-scanline" aria-hidden="true" />
+            <div className="zodiac-game-status" aria-hidden="true">
+              <span>órbita activa</span><strong>12 / 12</strong>
+            </div>
+            <span className="zodiac-legend-note note-a">cielo natal</span>
+            <span className="zodiac-legend-note note-b">carta celeste</span>
+            <span className="zodiac-legend-note note-c">mapa interior</span>
           </div>
-          <div className="floating-card floating-card-bottom"><span>tu mapa es único</span><b>☾</b></div>
+          {activeZodiac && activeInsight ? (
+            <article className="zodiac-insight" aria-live="polite">
+              <div className="zodiac-insight-meta">
+                <span>{activeZodiac.glyph} {activeZodiac.name}</span>
+                <small>Selección aleatoria · video relacionado</small>
+              </div>
+              <h3>{activeInsight.title}</h3>
+              <p>{activeInsight.body}</p>
+              <div className="zodiac-insight-footer">
+                <small>{activeInsight.sourceTopic}<br />Resumen editorial del tema visible · no es una cita textual.</small>
+                <a href={activeInsight.sourceUrl} target="_blank" rel="noreferrer">Ver video fuente <span>↗</span></a>
+              </div>
+            </article>
+          ) : null}
         </div>
+
       </section>
 
       <div className="marquee" aria-hidden="true">
@@ -647,79 +699,6 @@ export default function Home() {
               <div><span>02</span><strong>Lectura</strong><p>Tarot y astrología se traducen a una conversación clara, cálida y sin respuestas prefabricadas.</p></div>
               <div><span>03</span><strong>Integración</strong><p>Te llevas una devolución para volver a escuchar cuando necesites perspectiva.</p></div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="zodiac-section section" aria-label="Atlas zodiacal interactivo">
-        <div className="shell zodiac-layout">
-          <div className="zodiac-intro">
-            <p className="kicker">El atlas de tu cielo</p>
-            <h2>Tu historia<br /><em>tiene capas.</em></h2>
-            <p className="zodiac-copy">Entrá al mapa celeste y tocá un signo. Cada toque activa una ficha editorial aleatoria basada en un video público de Emilia asociado a ese signo, con el enlace al original para que puedas verlo completo.</p>
-            <p className="zodiac-instruction"><span>✦</span> Tocá un signo para revelar una ficha aleatoria.</p>
-            <a className="quiet-link light-link" href="#lecturas">Explorar una lectura <span>↗</span></a>
-          </div>
-          <div className="zodiac-experience">
-            <div className="zodiac-cloud">
-              <div className="zodiac-game-hud" aria-hidden="true">
-                <span><i>●</i> mapa celeste // 03</span>
-                <small>tocá para revelar</small>
-              </div>
-              <div className="zodiac-game-scene">
-                <div className="zodiac-map-grid" aria-hidden="true" />
-                <div className="zodiac-system" aria-hidden="true">
-                  <div className="zodiac-orbit orbit-a" />
-                  <div className="zodiac-orbit orbit-b" />
-                  <div className="zodiac-orbit orbit-c" />
-                  <span className="zodiac-planet planet-one" />
-                  <span className="zodiac-planet planet-two" />
-                  <span className="zodiac-planet planet-three" />
-                </div>
-                <div className="zodiac-signs" role="list" aria-label="Selecciona tu signo">
-                  {zodiacSigns.map((sign) => (
-                    <button
-                      className={"zodiac-sign " + (selectedZodiac === sign.key ? "is-active" : "")}
-                      key={sign.key}
-                      type="button"
-                      style={{ top: sign.top, left: sign.left }}
-                      onClick={() => selectZodiac(sign.key)}
-                      aria-pressed={selectedZodiac === sign.key}
-                      aria-label={"Ver ficha aleatoria para " + sign.name}
-                    >
-                      <span className="zodiac-glyph">{sign.glyph}</span>
-                      <span className="zodiac-sign-name">{sign.name}</span>
-                      <small className="zodiac-sign-element">{sign.element}</small>
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="zodiac-core" aria-hidden="true">
-                <strong>12</strong>
-                <small>signos<br />en órbita</small>
-              </div>
-              <span className="zodiac-scanline" aria-hidden="true" />
-              <div className="zodiac-game-status" aria-hidden="true">
-                <span>órbita activa</span><strong>12 / 12</strong>
-              </div>
-              <span className="zodiac-legend-note note-a">cielo natal</span>
-              <span className="zodiac-legend-note note-b">carta celeste</span>
-              <span className="zodiac-legend-note note-c">mapa interior</span>
-            </div>
-            {activeZodiac && activeInsight ? (
-              <article className="zodiac-insight" aria-live="polite">
-                <div className="zodiac-insight-meta">
-                  <span>{activeZodiac.glyph} {activeZodiac.name}</span>
-                  <small>Selección aleatoria · video relacionado</small>
-                </div>
-                <h3>{activeInsight.title}</h3>
-                <p>{activeInsight.body}</p>
-                <div className="zodiac-insight-footer">
-                  <small>{activeInsight.sourceTopic}<br />Resumen editorial del tema visible · no es una cita textual.</small>
-                  <a href={activeInsight.sourceUrl} target="_blank" rel="noreferrer">Ver video fuente <span>↗</span></a>
-                </div>
-              </article>
-            ) : null}
           </div>
         </div>
       </section>
