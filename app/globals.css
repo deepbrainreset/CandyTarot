@@ -295,6 +295,16 @@ img { max-width: 100%; }
   max-width: 520px;
   justify-self: end;
 }
+.hero-zodiac {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  justify-self: end;
+  z-index: 3;
+}
+.hero-zodiac .zodiac-cloud { height: 620px; }
+.hero-zodiac .zodiac-insight { margin-top: 16px; }
+
 .portrait-frame {
   position: absolute;
   inset: 0 30px;
@@ -432,9 +442,22 @@ img { max-width: 100%; }
 }
 
 
-@keyframes zodiacSignTurn {
-  0%, 100% { transform: translate3d(-50%, -50%, var(--sign-depth)) rotateY(-7deg) rotateX(var(--sign-tilt)); }
-  50% { transform: translate3d(-50%, -50%, var(--sign-depth)) rotateY(8deg) rotateX(calc(var(--sign-tilt) * -1)); }
+@keyframes zodiacOrbitTurn {
+  0% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(0deg); }
+  8% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(24deg); }
+  16% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(48deg); }
+  23% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(66deg); }
+  29% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(78deg); }
+  34% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(78deg); }
+  43% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(108deg); }
+  51% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(138deg); }
+  56% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(150deg); }
+  61% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(150deg); }
+  70% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(192deg); }
+  79% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(234deg); }
+  87% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(276deg); }
+  93% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(306deg); }
+  100% { transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(360deg); }
 }
 
 @keyframes shootingStar {
@@ -934,39 +957,37 @@ img { max-width: 100%; }
 }
 .zodiac-signs {
   position: absolute;
-  inset: 0;
-  z-index: 20;
   inset: 10% 0 9%;
-  transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px);
+  z-index: 20;
+  transform: rotateZ(9deg) rotateY(7deg) rotateX(-52deg) translateZ(23px) rotate(0deg);
   transform-style: preserve-3d;
+  animation: zodiacOrbitTurn 28s linear infinite;
+  will-change: transform;
 }
 .zodiac-sign {
   --sign-depth: 58px;
   --sign-tilt: -2deg;
   position: absolute;
   display: flex;
-  width: 90px;
-  min-height: 72px;
-  padding: 8px 6px;
+  width: 80px;
+  min-height: 66px;
+  padding: 8px 5px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(213, 208, 199, .28);
-  border-radius: 17px;
+  border: 0;
+  border-radius: 0;
   color: #ded9d0;
-  background: linear-gradient(145deg, rgba(24, 29, 49, .96), rgba(5, 7, 15, .9));
-  box-shadow:
-    0 14px 22px rgba(0, 0, 0, .4),
-    inset 0 1px 0 rgba(255, 255, 255, .12),
-    inset 0 -7px 14px rgba(0, 0, 0, .24);
+  background: transparent;
+  box-shadow: none;
   cursor: pointer;
   font: inherit;
   text-align: center;
   transform: translate3d(-50%, -50%, var(--sign-depth)) rotateY(-7deg) rotateX(var(--sign-tilt));
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  animation: zodiacSignTurn 9s ease-in-out infinite;
-  transition: color .25s, border-color .25s, background .25s, box-shadow .25s, transform .25s, filter .25s;
+  transition: color .25s, filter .25s, transform .25s;
+  will-change: transform;
 }
 .zodiac-sign:nth-child(1) { --sign-depth: 55px; --sign-tilt: -4deg; }
 .zodiac-sign:nth-child(2) { --sign-depth: 46px; --sign-tilt: -2deg; }
@@ -980,44 +1001,24 @@ img { max-width: 100%; }
 .zodiac-sign:nth-child(10) { --sign-depth: 43px; --sign-tilt: -5deg; }
 .zodiac-sign:nth-child(11) { --sign-depth: 51px; --sign-tilt: -4deg; }
 .zodiac-sign:nth-child(12) { --sign-depth: 57px; --sign-tilt: -3deg; }
-.zodiac-sign:nth-child(3n) { animation-delay: -2.2s; }
-.zodiac-sign:nth-child(4n) { animation-delay: -4.4s; }
-.zodiac-sign::before {
-  position: absolute;
-  inset: 4px;
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-radius: 12px;
-  content: '';
-  pointer-events: none;
-}
-.zodiac-sign::after {
-  position: absolute;
-  top: 8px;
-  right: 11px;
-  width: 18px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, .4), transparent);
-  content: '';
-  opacity: .65;
-  pointer-events: none;
-}
 .zodiac-sign:hover,
 .zodiac-sign:focus-visible,
 .zodiac-sign.is-active {
-  border-color: rgba(245, 221, 180, .96);
   color: #fff;
-  background: linear-gradient(145deg, rgba(58, 42, 57, .98), rgba(12, 13, 25, .96));
-  box-shadow:
-    0 0 0 6px rgba(245, 221, 180, .07),
-    0 0 28px rgba(245, 221, 180, .48),
-    0 20px 30px rgba(0, 0, 0, .44);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   outline: none;
-  animation: none;
-  filter: brightness(1.12);
-  transform: translate3d(-50%, -50%, calc(var(--sign-depth) + 54px)) rotateY(0deg) rotateX(0deg) scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(245, 221, 180, .9)) drop-shadow(0 0 24px rgba(224, 120, 120, .55));
+  transform: translate3d(-50%, -50%, calc(var(--sign-depth) + 54px)) rotateY(0deg) rotateX(0deg) scale(1.18);
 }
-.zodiac-sign.is-active::before,
-.zodiac-sign:focus-visible::before { border-color: rgba(224, 120, 120, .7); box-shadow: 0 0 18px rgba(224, 120, 120, .25); }
+.zodiac-sign:focus-visible {
+  outline: 1px dotted rgba(245, 221, 180, .8);
+  outline-offset: 8px;
+}
+.zodiac-sign::before,
+.zodiac-sign::after { display: none; }
+
 .zodiac-glyph { color: var(--red-bright); font: 27px var(--serif); line-height: 1; }
 .zodiac-sign-name {
   margin-top: 4px;
@@ -1223,6 +1224,8 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .hero { grid-template-columns: 1fr; gap: 55px; min-height: 0; padding-top: 72px; padding-bottom: 85px; }
   .hero h1 { font-size: clamp(49px, 12vw, 78px); }
   .hero-portrait { width: 100%; height: 530px; max-width: none; justify-self: stretch; }
+  .hero-zodiac { width: 100%; max-width: 720px; justify-self: stretch; }
+  .hero-zodiac .zodiac-cloud { max-width: 720px; height: auto; aspect-ratio: 1; }
   .section-heading,
   .method-inner,
   .zodiac-layout,
@@ -1334,6 +1337,7 @@ details p { max-width: 600px; margin: 17px 0 2px; color: #9898a2; font-size: 14p
   .zodiac-game-scene,
   .zodiac-system,
   .zodiac-core,
+  .zodiac-signs,
   .zodiac-sign,
   .zodiac-scanline {
     animation: none !important;
