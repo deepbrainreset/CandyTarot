@@ -131,6 +131,37 @@
   .booking{background-size:auto 720%;background-position:center 91%}
 }
 
+/* Payment and booking flow */
+.reading-price{display:block;margin:0 0 12px;color:var(--gold);font-family:var(--serif);font-size:1.12rem;letter-spacing:.06em}
+.payment-booking{align-items:stretch;text-align:left;padding:72px clamp(24px,6vw,92px)!important;background-image:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.48)),url('/assets/booking-mountains-v1.webp')!important}
+.payment-intro{flex:0 1 430px;align-self:center}
+.payment-intro h2{font-size:clamp(2.6rem,4.8vw,4.6rem);line-height:.95}
+.payment-intro>p:last-child{max-width:430px;color:#d4ccbe;font-size:1.05rem}
+.payment-panel{width:min(100%,590px);padding:30px;border:1px solid rgba(215,178,108,.5);border-radius:14px;background:rgba(5,5,5,.9);box-shadow:0 24px 80px rgba(0,0,0,.55);backdrop-filter:blur(12px)}
+.payment-panel>label{display:block;margin:0 0 9px;color:#f3eadb;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.payment-panel select,.receipt-input{width:100%;min-height:50px;margin:0 0 22px;padding:11px 13px;border:1px solid rgba(215,178,108,.42);border-radius:8px;background:#0c0a08;color:#fff;font:500 .96rem var(--sans)}
+.payment-panel select:focus,.receipt-input:focus{outline:2px solid var(--gold);outline-offset:2px}
+.transfer-card{position:relative;margin:0 0 24px;padding:20px;border:1px solid rgba(215,178,108,.25);border-radius:10px;background:linear-gradient(135deg,rgba(215,178,108,.12),rgba(255,255,255,.025))}
+.transfer-card p{display:grid;grid-template-columns:90px 1fr;gap:10px;margin:0;padding:8px 0;border-bottom:1px solid rgba(215,178,108,.12)}
+.transfer-card p:last-of-type{border-bottom:0}.transfer-card span{color:var(--muted);font-size:.78rem;text-transform:uppercase}.transfer-card strong{overflow-wrap:anywhere;color:#fff;font-size:.96rem}
+.copy-button{margin-top:13px;padding:9px 16px;border:1px solid var(--gold);border-radius:999px;background:transparent;color:#fff;cursor:pointer;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.receipt-input{padding:10px}.receipt-input::file-selector-button{margin-right:12px;padding:9px 12px;border:0;border-radius:6px;background:var(--gold);color:#171008;font-weight:700;cursor:pointer}
+.receipt-ready{margin:-10px 0 20px;color:#e3c98f;font-size:.86rem}
+.contact-unlock{padding-top:20px;border-top:1px solid rgba(215,178,108,.24)}.contact-unlock>p{margin:0 0 13px;font-weight:600}
+.contact-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}.contact-buttons .button{width:100%;padding-inline:14px}
+.contact-buttons .disabled{pointer-events:none;opacity:.35;filter:grayscale(1)}
+.contact-unlock small{display:block;margin-top:12px;color:#aaa195;line-height:1.45}
+.payment-legal{margin:20px 0 0;padding-top:16px;border-top:1px solid rgba(215,178,108,.18);color:#918a80;font-size:.75rem;line-height:1.5}
+
+@media(max-width:760px){
+  .payment-booking{padding:54px 14px!important;gap:28px!important;background-size:cover!important}
+  .payment-intro{width:100%;text-align:center}.payment-intro h2{font-size:clamp(2.3rem,11vw,3.2rem)}
+  .payment-intro>p:last-child{margin-inline:auto}
+  .payment-panel{width:100%;padding:22px 16px;border-radius:10px}
+  .transfer-card{padding:15px}.transfer-card p{grid-template-columns:76px minmax(0,1fr)}
+  .contact-buttons{grid-template-columns:1fr}.contact-buttons .button{max-width:none}
+}
+
 /* V4 — final assembly with individually generated artwork. */
 .hero{display:block;position:relative;min-height:0;padding:0;aspect-ratio:1672/941;background:#000;overflow:hidden}
 .hero:before{display:none}
