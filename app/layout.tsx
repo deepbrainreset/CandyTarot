@@ -18,7 +18,16 @@ export const metadata: Metadata = {
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "ProfessionalService", "@id": `${siteUrl}/#business`, name: "Candy Tarot", url: siteUrl, image: `${siteUrl}/emilia.jpg`, description: "Servicios online de tarot y astrología con Emilia Marsicano.", founder: { "@type": "Person", name: "Emilia Marsicano", jobTitle: "Tarotista y astróloga", sameAs: ["https://www.tiktok.com/@emiliamarsicano"] }, areaServed: ["Argentina", "Latinoamérica", "Estados Unidos", "España"], knowsAbout: ["Tarot de Marsella", "Astrología natal", "Sinastría", "Acompañamiento lunar"] },
+    { "@type": "ProfessionalService", "@id": `${siteUrl}/#business`, name: "Candy Tarot", url: siteUrl, image: `${siteUrl}/emilia.jpg`, description: "Servicios online de tarot y astrología con Emilia Marsicano.", founder: { "@type": "Person", name: "Emilia Marsicano", jobTitle: "Tarotista y astróloga", sameAs: ["https://www.tiktok.com/@emiliamarsicano"] }, areaServed: ["Argentina", "Latinoamérica", "Estados Unidos", "España"], knowsAbout: ["Tarot de Marsella", "Astrología natal", "Sinastría"], hasOfferCatalog: { "@type": "OfferCatalog", name: "Lecturas online", itemListElement: [
+      { "@type": "Offer", priceCurrency: "ARS", price: "15000", itemOffered: { "@type": "Service", name: "Una pregunta puntual" } },
+      { "@type": "Offer", priceCurrency: "ARS", price: "38000", itemOffered: { "@type": "Service", name: "Lectura de amor" } },
+      { "@type": "Offer", priceCurrency: "ARS", price: "38000", itemOffered: { "@type": "Service", name: "Lectura de trabajo" } },
+      { "@type": "Offer", priceCurrency: "ARS", price: "38000", itemOffered: { "@type": "Service", name: "Propósito y decisiones" } },
+      { "@type": "Offer", priceCurrency: "ARS", price: "58000", itemOffered: { "@type": "Service", name: "Lectura general" } },
+      { "@type": "Offer", priceCurrency: "ARS", price: "95000", itemOffered: { "@type": "Service", name: "Carta natal" } },
+      { "@type": "Offer", priceCurrency: "ARS", price: "115000", itemOffered: { "@type": "Service", name: "Sinastría de pareja" } },
+      { "@type": "Offer", priceCurrency: "ARS", price: "135000", itemOffered: { "@type": "Service", name: "Tarot + carta natal" } }
+    ] } },
     { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: siteUrl, name: "Candy Tarot", publisher: { "@id": `${siteUrl}/#business` }, inLanguage: "es" },
     { "@type": "FAQPage", "@id": `${siteUrl}/#faq`, mainEntity: [
       { "@type": "Question", name: "¿Cómo recibo mi lectura?", acceptedAnswer: { "@type": "Answer", text: "Las sesiones se coordinan online. Recibes las indicaciones por mensaje directo y, según el servicio, un audio y/o un PDF para volver a escuchar tu lectura." } },
