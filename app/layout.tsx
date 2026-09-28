@@ -6,7 +6,7 @@ const siteUrl = "https://candytarot.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Candy Tarot | Tarot y astrología online con Emilia Marsicano",
-  description: "Lecturas de tarot, carta natal, sinastría y acompañamiento lunar con Emilia Marsicano. Atención online desde Entre Ríos para Argentina, Latinoamérica, EE. UU. y España.",
+  description: "Lecturas de tarot, carta natal y sinastría online con Emilia Marsicano para Argentina, Latinoamérica, EE. UU. y España.",
   keywords: ["tarot online", "tarot Argentina", "carta natal online", "sinastría", "astrología online", "Emilia Marsicano", "Candy Tarot"],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
@@ -28,4 +28,18 @@ const structuredData = {
   ]
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="es"><body>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /></body></html>; }
+const visuallyHidden: React.CSSProperties = {
+  position: "absolute",
+  width: "1px",
+  height: "1px",
+  padding: 0,
+  margin: "-1px",
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  border: 0,
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="es"><body><h1 style={visuallyHidden}>Candy Tarot — Tarot y astrología online con Emilia Marsicano</h1>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /></body></html>;
+}
