@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://candytarot.com/</loc>
-  </url>
+  <url><loc>https://candytarot.com/</loc></url>
+  <url><loc>https://candytarot.com/tarot-online</loc></url>
+  <url><loc>https://candytarot.com/tarot-del-amor</loc></url>
+  <url><loc>https://candytarot.com/carta-natal</loc></url>
+  <url><loc>https://candytarot.com/sinastria-de-pareja</loc></url>
+  <url><loc>https://candytarot.com/tarot-trabajo</loc></url>
+  <url><loc>https://candytarot.com/lectura-general</loc></url>
 </urlset>
